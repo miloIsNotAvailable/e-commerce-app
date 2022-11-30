@@ -19,5 +19,4 @@ test('Renders main page correctly', async() => {
             </Provider>
         )
     } )
-    // expect(button.innerHTML).toBe( 'count is 0' );
 });
