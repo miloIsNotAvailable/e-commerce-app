@@ -17,7 +17,7 @@ const Home: FC = () => {
 
     return (
         <>
-            <div onClick={ console.log }>click it</div>
+            <div onClick={ console.log }>click me</div>
         </>
     )
 }

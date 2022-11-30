@@ -6,9 +6,27 @@ import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
 import bodyParser from 'body-parser'
+import { ApolloServer, gql } from 'apollo-server-express'
+
+const typeDefs = gql`
+  type Query {
+    hello: String
+  }
+`;
+
+const resolvers = {
+  Query: {
+    hello: () => 'Hello world!',
+  },
+};
 
 async function createServer() {
+  
+  const server = new ApolloServer({ typeDefs, resolvers });
   const app = express()
+
+  await server.start();
+  server.applyMiddleware( { app } )
 
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
   const publicDirectoryPath = path.join(__dirname, '../public/')
