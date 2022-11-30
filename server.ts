@@ -26,7 +26,7 @@ async function createServer() {
   const app = express()
 
   await server.start();
-  server.applyMiddleware( { app } )
+  server.applyMiddleware( { app, path: "/api/graphiql" } )
 
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
   const publicDirectoryPath = path.join(__dirname, '../public/')
