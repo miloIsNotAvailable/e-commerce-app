@@ -17,7 +17,7 @@ export const fetchApi = createApi( {
     reducerPath: 'api',
     tagTypes: [ "refresh", "category", "voted", "joined", "commented" ],
     baseQuery: graphqlBaseQuery( { 
-        baseUrl: 'graphql' ,
+        baseUrl: 'graphiql' ,
     } ),
     endpoints: ( { mutation, query } ) => ({
         getHello: query<any, queryType>( {
