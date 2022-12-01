@@ -1,12 +1,13 @@
 import fs from 'fs'
 import path from 'path'
-import { fileURLToPath } from 'url'
 import express, { application } from 'express'
 import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
 import bodyParser from 'body-parser'
 import { ApolloServer, gql } from 'apollo-server-express'
+import { ApolloServerPluginDrainHttpServer } from 'apollo-server-core'
+import http from 'http'
 
 const typeDefs = gql`
   type Query {
@@ -22,18 +23,26 @@ const resolvers = {
 
 async function createServer() {
   
-  const server = new ApolloServer({ typeDefs, resolvers });
+  
   const app = express()
-
-  await server.start();
-  server.applyMiddleware( { app, path: "/api/graphiql" } )
-
+  
+  
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
   const publicDirectoryPath = path.join(__dirname, '../public/')
   app.use(express.static(publicDirectoryPath))
   
   // parse application/json
   app.use(bodyParser.json( { limit: '50mb' } ))
+  
+  const httpServer = http.createServer( app );
+  const server = new ApolloServer({ 
+    typeDefs, 
+    resolvers,
+    plugins: [ ApolloServerPluginDrainHttpServer( { httpServer } ) ] 
+  });
+  
+  await server.start();
+  server.applyMiddleware( { app } )
 
   // Create Vite server in middleware mode and configure the app type as
   // 'custom', disabling Vite's own HTML serving logic so parent server
