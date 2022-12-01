@@ -1,15 +1,21 @@
-import React, { FC } from 'react'
-import { render } from '@testing-library/react'
+import React, { FC, ReactElement } from 'react'
+import { render, RenderOptions } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { preloadStore } from '../redux/store'
+import { preloadStore, RootState, store } from '../redux/store'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
+import { PreloadedState } from '@reduxjs/toolkit'
 
 interface WrapperProps {
     children: JSX.Element | JSX.Element[] | string
 }
 
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+  preloadedState?: PreloadedState<RootState>
+  store?: typeof store
+}
+
 export function renderWithProviders(
-  ui: any,
+  ui: ReactElement,
   {
     preloadedState = {},
     // Automatically create a store instance if no store was passed in

@@ -9,15 +9,19 @@ query Hey {
 
 const Home: FC = () => {
 
-    const { data } = useGetHelloQuery( {
+    const { data, isFetching } = useGetHelloQuery( {
         body: HELLO_QUERY,
         variables: {}
     } );
-    console.log( data )
+    
+    useEffect( () => {
+        if( !data ) return
+        console.log( process.env.NODE_ENV )
+    }, [ isFetching ] )
 
     return (
         <>
-            <div onClick={ console.log }>click me</div>
+            <div onClick={ console.log }>{ data?.hello || "no data" }</div>
         </>
     )
 }
