@@ -6,31 +6,9 @@ import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
 import bodyParser from 'body-parser'
-import { ApolloServer, gql } from 'apollo-server-express'
-import { ApolloServerPluginDrainHttpServerOptions } from 'apollo-server-core'
-import cors from 'cors'
-
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello world!',
-  },
-};
 
 async function createServer() {
-  
-  const server = new ApolloServer({ typeDefs, resolvers });
   const app = express()
-
-  app.use( cors() )
-
-  await server.start();
-  server.applyMiddleware( { app, path: "/graphiql" } )
 
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
   const publicDirectoryPath = path.join(__dirname, '../public/')
