@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Actions from "../actions/Actions";
 import Menu from "../menu/Menu";
-import SignIn from "../menu/signin";
+import SignIn from "../menu/SignIn";
 import SwitchMode from "../switch-mode/switchMode";
 import { styles } from "./NavbarStyles";
 
