@@ -1,0 +1,54 @@
+.navbar_wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 4rem;
+    border-bottom: var(--border);
+}
+
+.actions_wrap {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 100%;
+    height: inherit;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0 2rem;
+}
+
+.action {
+    font-family: "Neue Montreal";
+    font-weight: bold;
+    color: white;
+    font-size: clamp( .7rem, 3vw, 1rem );  
+    text-transform: uppercase;  
+}
+
+.signin {
+    composes: action;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    justify-self: flex-end;
+    height: calc(100%);
+    min-width: fit-content;
+    padding: 0 5rem;
+    color: #3E3E3E; 
+    background-color: var(--yellow);
+    transition: all 100ms ease;
+}
+
+.signin:hover {
+    background-color: var(--bg);
+    color: white;
+}
+
+.icon {
+    display: grid;
+    place-items: center;
+    align-self: flex-end;
+    width: auto;
+    height: 100%;
+    aspect-ratio: 1;
+}

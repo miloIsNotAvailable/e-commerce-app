@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import Navbar from "../components/navbar/build/Navbar";
 import { useGetHelloQuery } from "../redux/api/fetchApi";
 
 const HELLO_QUERY = `
@@ -20,9 +21,10 @@ const Home: FC = () => {
     }, [ isFetching ] )
 
     return (
-        <>
-            <div onClick={ console.log }>{ data?.hello || "no data" }</div>
-        </>
+        <div>
+            <Navbar/>
+            {/* <div onClick={ console.log }>{ data?.hello || "no data" }</div> */}
+        </div>
     )
 }
 
