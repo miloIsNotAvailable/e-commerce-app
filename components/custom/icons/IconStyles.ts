@@ -1,1 +1,1 @@
-export { default as styles } from '../../../styles/custom/IconStyles.module.css'
+export { default as styles } from '../../../styles/custom/iconStyles.module.css'
