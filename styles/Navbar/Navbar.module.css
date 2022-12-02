@@ -18,7 +18,7 @@
 }
 
 .action {
-    font-family: "Neue Montreal";
+    font-family: 'PP Neue Montreal';
     font-weight: bold;
     color: white;
     font-size: clamp( .7rem, 3vw, 1rem );  
@@ -26,7 +26,7 @@
 }
 
 .signin {
-    font-family: "Neue Montreal";
+    font-family: "PP Neue Montreal";
     font-weight: bold;
     color: white;
     font-size: clamp( .7rem, 3vw, 1rem );  
