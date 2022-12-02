@@ -26,7 +26,11 @@
 }
 
 .signin {
-    composes: action;
+    font-family: "Neue Montreal";
+    font-weight: bold;
+    color: white;
+    font-size: clamp( .7rem, 3vw, 1rem );  
+    text-transform: uppercase;
     cursor: pointer;
     display: grid;
     place-items: center;
