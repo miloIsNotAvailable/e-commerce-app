@@ -58,7 +58,7 @@ body {
 }
 
 @font-face {
-  font-family: "PP Neue Monument Extended";
+  font-family: "PP Neue Monument";
   src: url( "../../fonts/PPMonumentExtended-Black.otf" );
   font-weight: bold;
 }
@@ -69,16 +69,23 @@ body {
 
 #Ellipse3 {
   fill: var(--bg);
-  transition: all 100ms ease;
+  transition: all 100ms ease-in;
 }
 
-#mode:hover #stars * {
-  transform: rotate(360deg);
-  fill: white;
+#stars {
+  transform-origin: 44% 51%;
+  transition: all 1s ease;
+}
+
+#mode:hover #stars {
+  transform: rotate(720deg);
+  /* fill: white; */
 }
 
 canvas {
-  width: 100%;
+  position: static;
+  /* place-self: center; */
+  width: 100%;;
   height: 100%;
 }
 
