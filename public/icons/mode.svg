@@ -1,13 +1,14 @@
-<svg width="100%" height="100%" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="mode">
-<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M12 6.25606C10.2522 6.87381 9 8.54067 9 10.5C9 12.4593 10.2522 14.1262 12 14.7439C11.5308 14.9098 11.026 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C11.026 6 11.5308 6.09023 12 6.25606Z" fill="white"/>
-<path id="Polygon 1" d="M10.5 0L12.6651 3.75H8.33494L10.5 0Z" fill="white"/>
-<path id="Polygon 3" d="M17.9245 3.07538L16.8038 7.25797L13.7419 4.1961L17.9245 3.07538Z" fill="white"/>
-<path id="Polygon 5" d="M21 10.5L17.25 12.6651L17.25 8.33494L21 10.5Z" fill="white"/>
-<path id="Polygon 7" d="M17.9246 17.9245L13.742 16.8038L16.8039 13.7419L17.9246 17.9245Z" fill="white"/>
-<path id="Polygon 2" d="M10.5 21L8.33494 17.25L12.6651 17.25L10.5 21Z" fill="white"/>
-<path id="Polygon 4" d="M3.07549 17.9246L4.19621 13.742L7.25808 16.8039L3.07549 17.9246Z" fill="white"/>
-<path id="Polygon 6" d="M-1.56095e-07 10.5L3.75 8.33494L3.75 12.6651L-1.56095e-07 10.5Z" fill="white"/>
-<path id="Polygon 8" d="M3.07538 3.07549L7.25797 4.19621L4.1961 7.25808L3.07538 3.07549Z" fill="white"/>
+<svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Property 1=Default">
+<circle id="Ellipse 2" cx="10.5" cy="10.5" r="4.5" fill="#3E3E3E"/>
+<circle id="Ellipse 3" cx="19.5" cy="10.5" r="4.5" fill="#3E3E3E"/>
+<path id="Polygon 1" d="M10.5 0L12.6651 3.75H8.33494L10.5 0Z" fill="#3E3E3E"/>
+<path id="Polygon 3" d="M17.9246 3.07538L16.8039 7.25797L13.742 4.1961L17.9246 3.07538Z" fill="#3E3E3E"/>
+<path id="Polygon 5" d="M21 10.5L17.25 12.6651L17.25 8.33494L21 10.5Z" fill="#3E3E3E"/>
+<path id="Polygon 7" d="M17.9246 17.9246L13.742 16.8039L16.8039 13.742L17.9246 17.9246Z" fill="#3E3E3E"/>
+<path id="Polygon 2" d="M10.5 21L8.33494 17.25L12.6651 17.25L10.5 21Z" fill="#3E3E3E"/>
+<path id="Polygon 4" d="M3.07537 17.9246L4.19609 13.742L7.25795 16.8039L3.07537 17.9246Z" fill="#3E3E3E"/>
+<path id="Polygon 6" d="M-1.56095e-07 10.5L3.75 8.33494L3.75 12.6651L-1.56095e-07 10.5Z" fill="#3E3E3E"/>
+<path id="Polygon 8" d="M3.07538 3.07537L7.25797 4.19609L4.1961 7.25795L3.07538 3.07537Z" fill="#3E3E3E"/>
 </g>
 </svg>

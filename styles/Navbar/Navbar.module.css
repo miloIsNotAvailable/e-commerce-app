@@ -20,7 +20,7 @@
 .action {
     font-family: 'PP Neue Montreal';
     font-weight: bold;
-    color: white;
+    color: var(--font-color);
     font-size: clamp( .7rem, 3vw, 1rem );  
     text-transform: uppercase;  
 }
@@ -28,7 +28,6 @@
 .signin {
     font-family: "PP Neue Montreal";
     font-weight: bold;
-    color: white;
     font-size: clamp( .7rem, 3vw, 1rem );  
     text-transform: uppercase;
     cursor: pointer;
@@ -55,4 +54,12 @@
     width: auto;
     height: 100%;
     aspect-ratio: 1;
+}
+
+.mode_icon {
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: var(--icon-size);
+    height: var(--icon-size);
 }
