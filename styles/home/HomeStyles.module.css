@@ -1,0 +1,47 @@
+.title {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    place-items: center;
+    justify-content: space-between;
+    font-family: 'PP Neue Monument';
+    font-weight: bold;
+    width: 100vw;
+    height: 12vw;
+    font-size: 10vw;
+    color: var(--font-color);
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    gap: 2rem;
+    overflow: hidden;
+    border-bottom: var(--border);
+}
+
+@keyframes spin {
+    100% {
+        transform: translate(110%);
+    }
+}
+
+.l_1, .l_2 {
+    position: absolute;
+    /* animation: spin 1s ease infinite; */
+}
+
+.l_1 {
+    transform: translate(-100%);
+    animation: spin 10s cubic-bezier(1,1,0,0) infinite;
+    animation-delay: 5s;
+}
+
+.l_2 {
+    transform: translate(-100%);
+    animation: spin 10s cubic-bezier(1,1,0,0) infinite;
+    /* animation-delay: 1s; */
+}
+
+.wrap_canvas {
+    width: calc(100vw);
+    height: calc( 100vh - 12vw - 5rem );
+}

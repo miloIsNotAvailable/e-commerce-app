@@ -1,4 +1,6 @@
 import { FC, useEffect } from "react";
+import Bg from "../components/home/bg/Bg";
+import Title from "../components/home/title";
 import Navbar from "../components/navbar/build/Navbar";
 import { useGetHelloQuery } from "../redux/api/fetchApi";
 
@@ -21,9 +23,12 @@ const Home: FC = () => {
     }, [ isFetching ] )
 
     return (
-        <div>
+        <div className="page">
             <Navbar/>
-            {/* <div onClick={ console.log }>{ data?.hello || "no data" }</div> */}
+            <div>
+                <Title/>
+                <Bg/>
+            </div>
         </div>
     )
 }

@@ -13,7 +13,7 @@ import { styles } from "./NavbarStyles";
 const Navbar: FC = () => {
 
     return (
-        <div className={ styles.navbar_wrap }>
+        <nav className={ styles.navbar_wrap }>
             <Actions/>
             <LazyLoad props={ {
                 width: "calc( 3rem + var(--icon-size) )",
@@ -33,7 +33,7 @@ const Navbar: FC = () => {
             } }>
                 <Menu/>
             </LazyLoad>
-        </div>
+        </nav>
     )
 }
 
