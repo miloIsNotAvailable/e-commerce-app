@@ -1,12 +1,26 @@
-import { FC } from "react";
+import { FC, useState } from "react";
+import { ModalContext } from "../../../contexts/ModalContext";
 import { styles } from "../build/NavbarStyles";
+import SignInModal from "./SignInModal";
 
 const SignIn: FC = () => {
 
+    const [ open, setOpen ] = useState<boolean>( false )
+
+    const handleOpenModal: () => void = () => {
+        setOpen( !open )
+    }
+
     return (
-        <div className={ styles.signin }>
-            sign in
-        </div>
+        <ModalContext value={ { open, setOpen } }>
+            <div 
+                className={ styles.signin }
+                onClick={ handleOpenModal }
+            >
+                sign in
+            </div>
+            { open && <SignInModal/> }
+        </ModalContext>
     )
 }
 
