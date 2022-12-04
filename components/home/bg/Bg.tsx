@@ -22,7 +22,7 @@ const Bg: FC = () => {
         if( !ref.current ) return
 
         const app = new Application( ref.current );
-        app.load('https://prod.spline.design/CC2m5QPKtUULORZk/scene.splinecode');
+        app.load('https://prod.spline.design/LKctIre2mSBZIefR/scene.splinecode');
     }, [ ref.current ] )
 
     return (

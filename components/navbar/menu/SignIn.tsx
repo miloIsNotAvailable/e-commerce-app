@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { ModalContext } from "../../../contexts/ModalContext";
 import { styles } from "../build/NavbarStyles";
-import SignInModal from "./SignInModal";
+import SignInModal from "./SignInModal/SignInModal";
 
 const SignIn: FC = () => {
 

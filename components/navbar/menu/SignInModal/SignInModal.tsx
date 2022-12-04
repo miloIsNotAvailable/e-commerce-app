@@ -1,6 +1,7 @@
 import { FC } from "react";
-import { useModalContext } from "../../../contexts/ModalContext";
-import { styles } from "../build/NavbarStyles";
+import { useModalContext } from "../../../../contexts/ModalContext";
+import { styles } from "../../build/NavbarStyles";
+import Form from "./Form";
 
 const SignInModal: FC = () => {
 
@@ -18,6 +19,14 @@ const SignInModal: FC = () => {
             >
                 +
             </div>
+            <Form 
+                placeholder={ "email" } 
+                type={ "email" }
+            />
+            <Form 
+                placeholder={ "password" } 
+                type={ "password" }
+            />
         </form>
     )
 }
