@@ -63,7 +63,7 @@ body {
   font-weight: bold;
 }
 
-#mode * {
+#mode *, #menu * {
   fill: var(--font-color)
 }
 

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { useModalContext } from "../../../../contexts/ModalContext";
+import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
 import Form from "./Form";
 
@@ -27,6 +28,10 @@ const SignInModal: FC = () => {
                 placeholder={ "password" } 
                 type={ "password" }
             />
+            <div className={ styles.modal_buttons }>
+                <Button>sign in</Button>
+                <Button>sign up</Button>
+            </div>
         </form>
     )
 }
