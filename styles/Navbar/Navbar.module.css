@@ -71,8 +71,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25rem;
-    height: 30rem;
+    min-width: 25rem;
+    min-height: 30rem;
     background-color: var(--bg);
     border: var(--border);
     z-index: 4;
