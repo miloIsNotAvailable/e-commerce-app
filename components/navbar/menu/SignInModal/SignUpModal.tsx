@@ -4,7 +4,7 @@ import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
 import Form from "./Form";
 
-const SignInModal: FC = () => {
+const SignUpModal: FC = () => {
 
     const [ { open, signUp }, setOpen ] = useModalContext()
     // const [ signUp, setSignUp ] = useState<boolean>( false )
@@ -41,16 +41,20 @@ const SignInModal: FC = () => {
                 placeholder={ "password" } 
                 type={ "password" }
             />
+            <Form 
+                placeholder={ "username" } 
+                type={ "username" }
+            />
             <div className={ styles.modal_buttons }>
                 <Button>sign in</Button>
                 <Button
                     onClick={ handleSignUp }
                 >
-                    signUp
+                    back
                 </Button>
             </div>
         </form>
     )
 }
 
-export default SignInModal
+export default SignUpModal

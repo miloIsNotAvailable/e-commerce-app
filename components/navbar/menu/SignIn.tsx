@@ -1,25 +1,36 @@
 import { FC, useState } from "react";
 import { ModalContext } from "../../../contexts/ModalContext";
+import { ModalContextDataType } from "../../../interfaces/contexts/ModalContextTypes";
 import { styles } from "../build/NavbarStyles";
 import SignInModal from "./SignInModal/SignInModal";
+import SignUpModal from "./SignInModal/SignUpModal";
 
 const SignIn: FC = () => {
 
-    const [ open, setOpen ] = useState<boolean>( false )
+    const [ { open, signUp }, setOpen ] = useState<ModalContextDataType>( {
+        open: false,
+        signUp: false
+    } )
 
     const handleOpenModal: () => void = () => {
-        setOpen( !open )
+        setOpen( {
+            open: !open,
+            signUp
+        } )
     }
 
     return (
-        <ModalContext value={ { open, setOpen } }>
+        <ModalContext value={ { 
+            data: { open, signUp }, 
+            setOpen 
+        } }>
             <div 
                 className={ styles.signin }
                 onClick={ handleOpenModal }
             >
                 sign in
             </div>
-            { open && <SignInModal/> }
+            { open && (signUp ? <SignUpModal/> : <SignInModal/>) }
         </ModalContext>
     )
 }
