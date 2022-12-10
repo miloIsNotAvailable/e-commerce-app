@@ -5,21 +5,13 @@ import { userDataState } from "../../../../interfaces/reduxInterfaces";
 import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
 import Email from "./Forms/Email";
-import Form from "./Forms/Form";
 import Password from "./Forms/Password";
+import Close from "./layout/Close";
 
 const SignInModal: FC = () => {
 
     const [ { open, signUp }, setOpen ] = useModalContext()
     const [ { userData } ] = useRedux<userDataState>()
-    // const [ signUp, setSignUp ] = useState<boolean>( false )
-
-    const handleCloseModal: () => void = () => {
-        setOpen( {
-            open: !open,
-            signUp
-        } )
-    }
 
     const handleSignUp: ( e: MouseEvent<HTMLButtonElement> ) => void 
     = e => {
@@ -36,20 +28,22 @@ const SignInModal: FC = () => {
 
     return (
         <form className={ styles.modal_wrap }>
-            <div 
-                className={ styles.modal_close }
-                onClick={ handleCloseModal }
-            >
-                +
-            </div>
+            <Close/>
             <Email/>
             <Password/>
             <div className={ styles.modal_buttons }>
-                <Button>sign in</Button>
-                <Button
+                <button 
+                    className={ styles.modal_button_redirect }
                     onClick={ handleSignUp }
                 >
-                    signUp
+                    don't have an account?
+                </button>
+                <Button
+                    style={ {
+                        width: "calc( 100% - 1.5rem )"
+                    } }
+                >
+                        sign in
                 </Button>
             </div>
         </form>

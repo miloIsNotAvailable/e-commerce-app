@@ -5,7 +5,7 @@
     width: fit-content;
     padding: .5rem 3rem;
     background-color: var(--yellow);
-    border-radius: 2rem;
+    border-radius: .4rem;
     border: 2px solid var(--bg);
     outline: none;
     font-family: 'PP Neue Montreal';
