@@ -2,7 +2,10 @@ import { FC, MouseEvent, useState } from "react";
 import { useModalContext } from "../../../../contexts/ModalContext";
 import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
-import Form from "./Form";
+import Email from "./Forms/Email";
+import Form from "./Forms/Form";
+import Password from "./Forms/Password";
+import Username from "./Forms/Username";
 
 const SignUpModal: FC = () => {
 
@@ -33,18 +36,9 @@ const SignUpModal: FC = () => {
             >
                 +
             </div>
-            <Form 
-                placeholder={ "email" } 
-                type={ "email" }
-            />
-            <Form 
-                placeholder={ "password" } 
-                type={ "password" }
-            />
-            <Form 
-                placeholder={ "username" } 
-                type={ "username" }
-            />
+            <Email/>
+            <Password/>
+            <Username/>
             <div className={ styles.modal_buttons }>
                 <Button>sign in</Button>
                 <Button
