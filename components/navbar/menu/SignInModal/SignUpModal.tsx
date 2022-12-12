@@ -32,7 +32,7 @@ const SignUpModal: FC = () => {
                     className={ styles.modal_button_redirect }
                     onClick={ handleSignUp }
                 >
-                    go back
+                    already have an account? Sign in
                 </button>
                 <Button
                     style={ {
