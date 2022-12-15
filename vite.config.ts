@@ -7,7 +7,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: [
-      { find: "@graphql-types", replacement: path.resolve( __dirname, 'graphql/.gql/graphql.ts' ) }
+      { find: "@graphql-types", replacement: path.resolve( __dirname, 'graphql/.gql/graphql.ts' ) },
+      { find: "@contexts", replacement: path.resolve( __dirname, './contexts' ) },
+      { find: "@hooks", replacement: path.resolve( __dirname, './hooks' ) },
     ]
   }
 })

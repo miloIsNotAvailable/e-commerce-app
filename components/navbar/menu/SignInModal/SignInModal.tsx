@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 import { FC, MouseEvent, useEffect, useState } from "react";
-import { useModalContext } from "../../../../contexts/ModalContext";
-import { useRedux } from "../../../../hooks/useRedux";
+import { useModalContext } from "@contexts/ModalContext";
+import { useRedux } from '@hooks/useRedux'
 import { userDataState } from "../../../../interfaces/reduxInterfaces";
 import { useGetHelloQuery } from "../../../../redux/api/fetchApi";
 import Button from "../../../custom/Button";
