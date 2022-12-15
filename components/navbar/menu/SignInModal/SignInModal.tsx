@@ -1,3 +1,4 @@
+import { gql } from "graphql-request";
 import { FC, MouseEvent, useEffect, useState } from "react";
 import { useModalContext } from "../../../../contexts/ModalContext";
 import { useRedux } from "../../../../hooks/useRedux";
@@ -8,6 +9,14 @@ import { styles } from "../../build/NavbarStyles";
 import Email from "./Forms/Email";
 import Password from "./Forms/Password";
 import Close from "./layout/Close";
+import { Book } from '@graphql-types'
+
+const e = gql`query Books {
+    books {
+      author
+      title
+    }
+  }`
 
 const SignInModal: FC = () => {
 
@@ -37,7 +46,7 @@ const SignInModal: FC = () => {
     useEffect( () => {
         ( async() => {
             try {
-                data && console.log( data )
+                data && console.log( data as Book )
             } catch( e ) {
                 console.log( error )
             }

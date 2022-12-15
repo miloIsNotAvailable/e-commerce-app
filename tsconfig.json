@@ -16,6 +16,9 @@
     "noEmit": false,
     "outDir": "./dist",
     "jsx": "react-jsx",
+    "paths": {
+      "@graphql-types": ["./graphql/.gql/graphql"]
+    }
   },
   "include": ["."],
   "references": [{ "path": "./tsconfig.node.json" }]

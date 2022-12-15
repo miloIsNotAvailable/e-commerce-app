@@ -12,62 +12,16 @@ import http from 'http';
 import cors from 'cors';
 import { json } from 'body-parser';
 import context from './graphql/context/context'
-
-const typeDefs = `#graphql
-
-  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
-
-
-  # This "Book" type defines the queryable fields for every book in our data source.
-
-  type Book {
-
-    title: String
-
-    author: String
-
-  }
-
-
-  # The "Query" type is special: it lists all of the available queries that
-
-  # clients can execute, along with the return type for each. In this
-
-  # case, the "books" query returns an array of zero or more Books (defined above).
-
-  type Query {
-
-    books: [Book]
-
-  }
-`;
-
-const books = [
-  {
-    title: 'The Awakening',
-    author: 'Kate Chopin',
-  },
-
-  {
-    title: 'City of Glass',
-    author: 'Paul Auster',
-
-  },
-];
-
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-};
+import { root } from './graphql/resolvers/resolvers'
+import { schema } from './graphql/schema/schema'
 
 async function createServer() {
   const app = express()
   const httpServer = http.createServer( app )
   
   const server = new ApolloServer<{ token: string }>({
-    typeDefs,  
-    resolvers,
+    typeDefs: schema,  
+    resolvers: root,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 

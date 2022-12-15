@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
 
-export type rootType = {
+type funcType = {
     [name: string]: ( args: any, context: contextType ) => any | Promise<any>
+} 
+
+export type rootType = {
+    Query?: funcType,
+    Mutation?: funcType
 }
 
 export type RootFunction = ( args: any, context: contextType ) => any | Promise<any>
