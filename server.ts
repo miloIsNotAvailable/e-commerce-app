@@ -1,14 +1,75 @@
 import fs from 'fs'
 import path from 'path'
-import { fileURLToPath } from 'url'
-import express, { application } from 'express'
+import express from 'express'
 import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
 import bodyParser from 'body-parser'
+import { ApolloServer } from '@apollo/server'
+import { expressMiddleware } from '@apollo/server/express4'
+import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import http from 'http';
+import cors from 'cors';
+import { json } from 'body-parser';
+import context from './graphql/context/context'
+
+const typeDefs = `#graphql
+
+  # Comments in GraphQL strings (such as this one) start with the hash (#) symbol.
+
+
+  # This "Book" type defines the queryable fields for every book in our data source.
+
+  type Book {
+
+    title: String
+
+    author: String
+
+  }
+
+
+  # The "Query" type is special: it lists all of the available queries that
+
+  # clients can execute, along with the return type for each. In this
+
+  # case, the "books" query returns an array of zero or more Books (defined above).
+
+  type Query {
+
+    books: [Book]
+
+  }
+`;
+
+const books = [
+  {
+    title: 'The Awakening',
+    author: 'Kate Chopin',
+  },
+
+  {
+    title: 'City of Glass',
+    author: 'Paul Auster',
+
+  },
+];
+
+const resolvers = {
+  Query: {
+    books: () => books,
+  },
+};
 
 async function createServer() {
   const app = express()
+  const httpServer = http.createServer( app )
+  
+  const server = new ApolloServer<{ token: string }>({
+    typeDefs,  
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
 
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
   const publicDirectoryPath = path.join(__dirname, '../public/')
@@ -45,6 +106,18 @@ async function createServer() {
     } )
   } )
 
+  await server.start();
+  
+  app.use(
+    "/api/graphiql",
+
+    cors<cors.CorsRequest>(),
+    json(),
+    expressMiddleware(server as any, {
+      context: context
+    })
+  );
+  
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl
   
@@ -93,9 +166,12 @@ async function createServer() {
       next(e)
     }
   })
-
+    
   const PORT = 5173 || process.env.PORT
-  app.listen(PORT, () => console.log( `✨ app is running on http://localhost:${ PORT }` ))
+  await new Promise<void>((resolve) => httpServer.listen({ port: PORT }, resolve));
+  
+  console.log(`🚀✨ Server ready at http://localhost:${PORT}`);
+  // app.listen(PORT, () => console.log( `✨ app is running on http://localhost:${ PORT }` ))
 }
 
 createServer()

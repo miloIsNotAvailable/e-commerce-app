@@ -2,6 +2,7 @@ import { FC, MouseEvent, useEffect, useState } from "react";
 import { useModalContext } from "../../../../contexts/ModalContext";
 import { useRedux } from "../../../../hooks/useRedux";
 import { userDataState } from "../../../../interfaces/reduxInterfaces";
+import { useGetHelloQuery } from "../../../../redux/api/fetchApi";
 import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
 import Email from "./Forms/Email";
@@ -13,6 +14,17 @@ const SignInModal: FC = () => {
     const [ { open, signUp }, setOpen ] = useModalContext()
     const [ { userData } ] = useRedux<userDataState>()
 
+    const { data, isLoading, error } = useGetHelloQuery( {
+        body: `
+        query Books {
+            books {
+              author
+              title
+            }
+          }`,
+          variables: {}
+    } )
+
     const handleSignUp: ( e: MouseEvent<HTMLButtonElement> ) => void 
     = e => {
         e.preventDefault()
@@ -21,6 +33,16 @@ const SignInModal: FC = () => {
             signUp: !signUp
         } )
     }
+
+    useEffect( () => {
+        ( async() => {
+            try {
+                data && console.log( data )
+            } catch( e ) {
+                console.log( error )
+            }
+        } )()
+    }, [ data, isLoading, error ] )
 
     useEffect( () => {
         console.log( userData )
