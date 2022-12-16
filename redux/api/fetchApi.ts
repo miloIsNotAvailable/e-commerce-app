@@ -1,37 +1,49 @@
+import { Book, BooksQuery } from '@graphql-types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { request } from 'graphql-request'
+import { GraphQLClient, request } from 'graphql-request'
+
+const requestHeaders: HeadersInit = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Credentials': "true",
+}
+
+type baseQueryType = {
+    body: string
+    variables: any
+    headers: HeadersInit
+}
 
 const graphqlBaseQuery =
   ({ baseUrl }: { baseUrl: string } = { baseUrl: '' }): any =>
-  async ({ body, variables }: any) => {
-    const result = await request(baseUrl, body, variables);
+  async ({ body, variables, headers=requestHeaders }: baseQueryType) => {
+
+
+    const result = await request(baseUrl, body, variables, headers );
     return { data: result };
   }
 
-type queryType = {
+type queryType<T=unknown> = {
     body: string, 
-    variables: any
+    variables?: T
+    headers?: HeadersInit
 }
 
 export const fetchApi = createApi( {
     reducerPath: 'api',
-    tagTypes: [ "refresh", "category", "voted", "joined", "commented" ],
+    tagTypes: [ ],
     baseQuery: graphqlBaseQuery( { 
         baseUrl: 'http://localhost:5173/api/graphiql',
     } ),
     endpoints: ( { mutation, query } ) => ({
-        getHello: query<any, queryType>( {
+        getHello: query<BooksQuery, queryType<Book>>( {
             providesTags: [],
-            query: ( { body, variables } ) => ( {
-                url: `/graphql`,
+            query: ( { body, variables, headers={} } ) => ( {
+                url: `/graphiql`,
                 method: 'POST',
                 credentials: "include",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Credentials': true,
-                },
+                headers: { ...requestHeaders, ...headers },
                 body: body,
-                variables
+                variables: variables
             } )
         } ),
     })

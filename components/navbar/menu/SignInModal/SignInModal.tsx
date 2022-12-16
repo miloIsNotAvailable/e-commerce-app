@@ -11,27 +11,23 @@ import Password from "./Forms/Password";
 import Close from "./layout/Close";
 import { Book } from '@graphql-types'
 
-const e = gql`query Books {
+const BOOK_QUERY = gql`query Books {
     books {
       author
       title
     }
   }`
-
+  
 const SignInModal: FC = () => {
 
     const [ { open, signUp }, setOpen ] = useModalContext()
     const [ { userData } ] = useRedux<userDataState>()
 
     const { data, isLoading, error } = useGetHelloQuery( {
-        body: `
-        query Books {
-            books {
-              author
-              title
-            }
-          }`,
-          variables: {}
+        body: BOOK_QUERY,
+        headers: {
+            "authorization": "Bearer UYqwouvfq384t249gbieprbgo3ibf391"
+        }
     } )
 
     const handleSignUp: ( e: MouseEvent<HTMLButtonElement> ) => void 
@@ -46,7 +42,7 @@ const SignInModal: FC = () => {
     useEffect( () => {
         ( async() => {
             try {
-                data && console.log( data as Book )
+                data && console.log( data.books )
             } catch( e ) {
                 console.log( error )
             }

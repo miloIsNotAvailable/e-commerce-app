@@ -1,5 +1,6 @@
 import { ExpressContextFunctionArgument } from '@apollo/server/express4'
 
 export default async function context ({ req }: ExpressContextFunctionArgument ) {
-    return { token: req.headers.token }
+    console.log( "e" )
+    return { token: req.headers.authentication, req }
 }
