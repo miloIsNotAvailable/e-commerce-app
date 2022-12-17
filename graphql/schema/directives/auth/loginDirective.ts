@@ -58,11 +58,10 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
 
 const getUser: getUserFnType = async( args ) => {    
 
+    console.log( {args} )
+
     const data = await prisma.users.findFirst( {
-        where: {
-            email: args!.email,
-            password: args!.password
-        }
+        where: args
     } ) 
     
     if( !data ) throw new Error( "invalid email or password" )
