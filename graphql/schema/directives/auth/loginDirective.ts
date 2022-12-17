@@ -7,7 +7,7 @@ import { root } from "../../../resolvers/resolvers";
 import { prisma } from '../../../../prisma/client'
 import { Users } from '@prisma/client'
 
-type getUserFnType = ( args: User ) => Promise<Users | null | undefined>
+type getUserFnType = ( args: { email: string, password: string } ) => Promise<Users | null | undefined>
 
 export default function loginDirective(
 directiveName: string,
@@ -40,7 +40,7 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
             fieldConfig.resolve = async function (source, args, context, info) {
     
                 try {
-                    const user = await getUserFn( args as User );
+                    const user = await getUserFn( args );
                     
                     return resolve(source, user, context, info);
                 } catch( e: any ) {
