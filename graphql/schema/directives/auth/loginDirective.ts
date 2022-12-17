@@ -60,15 +60,10 @@ const getUser: getUserFnType = async( args ) => {
 
     console.log( {args} )
 
-    // const data = await prisma.users.findFirst( {
-    //     where: {
-    //         email: "",
-    //         password: ""
-    //     }
-    // } ) 
+    const [ data ] = await prisma.users.findMany( {
+        where: args
+    } ) 
     
-    const data = undefined
-
     if( !data ) throw new Error( "invalid email or password" )
 
     return data
