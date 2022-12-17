@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\"",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && npx prisma generate",
     "test": "jest",
     "preview": "vite preview",
     "build:client": "vite build --outDir dist/client",
