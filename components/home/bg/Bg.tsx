@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { Application } from '@splinetool/runtime';
+// import { Application } from '@splinetool/runtime';
 import { styles } from "../build/HomeStyles";
 
 const Bg: FC = () => {
@@ -20,9 +20,15 @@ const Bg: FC = () => {
 
     useEffect( () => {
         if( !ref.current ) return
+        
+        ( async() =>{
+            if( !ref.current ) return
 
-        const app = new Application( ref.current );
-        app.load('https://prod.spline.design/LKctIre2mSBZIefR/scene.splinecode');
+            const { Application } = await import( "@splinetool/runtime" )
+
+            const app = new Application( ref.current );
+            app.load('https://prod.spline.design/LKctIre2mSBZIefR/scene.splinecode');
+        } )()
     }, [ ref.current ] )
 
     return (
