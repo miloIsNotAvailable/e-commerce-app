@@ -3,7 +3,7 @@ import { FC, MouseEvent, useEffect, useState } from "react";
 import { useModalContext } from "@contexts/ModalContext";
 import { useRedux } from '@hooks/useRedux'
 import { userDataState } from "../../../../interfaces/reduxInterfaces";
-import { useGetHelloQuery } from "../../../../redux/api/fetchApi";
+import { useGetHelloQuery, useGetUserQuery } from "../../../../redux/api/fetchApi";
 import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
 import Email from "./Forms/Email";
@@ -18,13 +18,22 @@ const BOOK_QUERY = gql`query Books {
     }
   }`
   
+  const USER_QUERY = gql`query User {
+    user {
+      email
+      password
+      username
+    }
+  }`
+
+
 const SignInModal: FC = () => {
 
     const [ { open, signUp }, setOpen ] = useModalContext()
     const [ { userData } ] = useRedux<userDataState>()
 
-    const { data, isLoading, error } = useGetHelloQuery( {
-        body: BOOK_QUERY,
+    const { data, isLoading, error } = useGetUserQuery( {
+        body: USER_QUERY,
         headers: {
             "authorization": "Bearer UYqwouvfq384t249gbieprbgo3ibf391"
         }
@@ -42,7 +51,7 @@ const SignInModal: FC = () => {
     useEffect( () => {
         ( async() => {
             try {
-                data && console.log( data.books )
+                data && console.log( data.user )
             } catch( e ) {
                 console.log( error )
             }

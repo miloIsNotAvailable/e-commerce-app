@@ -1,4 +1,4 @@
-import { Book, BooksQuery } from '@graphql-types';
+import { Book, BooksQuery, User, UserQuery } from '@graphql-types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { GraphQLClient, request } from 'graphql-request'
 
@@ -46,10 +46,22 @@ export const fetchApi = createApi( {
                 variables: variables
             } )
         } ),
+        getUser: query<UserQuery, queryType<User>>( {
+            providesTags: [],
+            query: ( { body, variables, headers={} } ) => ( {
+                url: `/graphiql`,
+                method: 'POST',
+                credentials: "include",
+                headers: { ...requestHeaders, ...headers },
+                body: body,
+                variables: variables
+            } )
+        } ),
     })
 } )
 
 export const { 
     useGetHelloQuery,
+    useGetUserQuery
 }
  = fetchApi

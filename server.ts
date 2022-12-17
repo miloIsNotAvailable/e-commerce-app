@@ -13,14 +13,17 @@ import cors from 'cors';
 import { json } from 'body-parser';
 import context from './graphql/context/context'
 import { root } from './graphql/resolvers/resolvers'
-import { schema } from './graphql/schema/schema'
+import { schema, schema_ } from './graphql/schema/schema'
+import { authDirectiveTransformer, authDirectiveTypeDefs } from './graphql/schema/directives/authDirective'
 
 async function createServer() {
   const app = express()
   const httpServer = http.createServer( app )
   
+
   const server = new ApolloServer<{ token: string }>({
-    typeDefs: schema,  
+    typeDefs: schema,
+    schema: schema_ as any,
     resolvers: root,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });

@@ -1,4 +1,5 @@
 import { rootType } from "../../interfaces/graphqlInterfaces/schemaInterfaces";
+import { User } from "@graphql-types"
 
 export const root: rootType = {
     Query: {
@@ -25,6 +26,27 @@ export const root: rootType = {
                 author: "Paul Auster",
                 },
             ];
+        },
+
+        user( _, args, { req } ): User {
+
+            console.log( req.headers.authorization )
+
+            return {
+                email: "hey",
+                password: "hi",
+                username: "hello"
+            }
+        },
+        async login( _, args, { req } ) {
+            try {
+    
+                console.log( args )
+                return { ...args }
+
+            } catch( e: any ) {
+                console.log( e )
+            }
         }
-    }
+    },
 }
