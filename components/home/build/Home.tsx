@@ -4,7 +4,11 @@ import Navbar from "../../navbar/build/Navbar";
 import BgLoading from "../bg/BgLoading";
 import Title from "../title";
 import { styles } from "./HomeStyles";
-const Bg = lazy( () => import("../bg" ) )
+const Bg = lazy( () => new Promise(
+    resolve => setTimeout(resolve, 2000 )
+    ) 
+    .then( () => import("../bg" ) )
+)
 
 const Mainscreen: FC = () => {
 
