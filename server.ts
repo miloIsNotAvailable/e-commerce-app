@@ -15,6 +15,7 @@ import context from './graphql/context/context'
 import { root } from './graphql/resolvers/resolvers'
 import { schema, schema_ } from './graphql/schema/schema'
 import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default'
+import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
 
 async function createServer() {
   const app = express()
@@ -28,10 +29,11 @@ async function createServer() {
       ApolloServerPluginDrainHttpServer({ httpServer }),
       process.env.NODE_ENV === "production" ?       
       ApolloServerPluginLandingPageProductionDefault( {
-        includeCookies: true
+        includeCookies: true,
       } ) : 
       ApolloServerPluginLandingPageLocalDefault( {
-        includeCookies: true
+        includeCookies: true,
+        embed: true
       } ),
     ],
   });
@@ -55,18 +57,21 @@ async function createServer() {
   // if you use your own express router (express.Router()), you should use router.use
   app.use(vite.middlewares)
   app.use( cookies() )
-  // app.use( cors( { credentials: true } ) )
 
   await server.start();
   
   app.use(
     "/api/graphiql",
-    cors(),
+    cors( { origin: "*" } ),
     json(),
     expressMiddleware(server as any, {
       context: context
     })
   );
+
+  if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 1); // trust first proxy
+  }
 
   let e = glob.sync( "./api/**/*.ts" )
 

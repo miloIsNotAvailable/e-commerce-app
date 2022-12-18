@@ -58,7 +58,7 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                             [cookies.serialize(
                                 "refresh_token", refresh_token, {
                                     httpOnly: true,
-                                    sameSite: "none",
+                                    sameSite: "strict",
                                     secure: true,
                                     maxAge: 60 * 60 * 24 * 7,
                                     path: "/"
@@ -68,7 +68,7 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                                 "access_token", acc_token, {
                                     httpOnly: true,
                                     secure: true,
-                                    sameSite: "none",
+                                    sameSite: "strict",
                                     maxAge: 60 * 60 * 24 * 7,
                                     path: "/"
                                 } 
