@@ -9,7 +9,7 @@ import { server } from "../server/build";
 
 export default ( req: Request, res: any, next: NextFunction ) => {
 
-  res.set( {
+  res.setHeader( {
     'Content-Type': "application/json"
   } )
 
