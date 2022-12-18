@@ -9,9 +9,7 @@ import { server } from "../server/build";
 
 export default ( req: Request, res: any, next: NextFunction ) => {
 
-  res.setHeader( {
-    'Content-Type': "application/json"
-  } )
+  res.setHeader( 'Content-Type', "application/json")
 
   (expressMiddleware(server, {
     context: context
