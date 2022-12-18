@@ -57,6 +57,7 @@ const SignInModal: FC = () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Credentials': "true",
+                'x-forwarded-proto': "https"
             },
             variables: {
                 email: email!,
