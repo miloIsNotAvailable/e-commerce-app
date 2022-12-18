@@ -21,12 +21,7 @@ async function createServer() {
   const app = express()
   const httpServer = http.createServer( app )
 
-  const ApolloServerLandingPage = () => process.env.NODE_ENV === "production" ?       
-      ApolloServerPluginLandingPageProductionDefault( {
-        embed: true,
-        graphRef: "ecommerce-stuff@current",
-        includeCookies: true,
-      } ) : 
+  const ApolloServerLandingPage = () => 
       ApolloServerPluginLandingPageLocalDefault( {
         includeCookies: true,
         embed: true
