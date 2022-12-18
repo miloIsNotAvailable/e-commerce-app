@@ -32,7 +32,7 @@ export const fetchApi = createApi( {
     reducerPath: 'api',
     tagTypes: [ ],
     baseQuery: graphqlBaseQuery( { 
-        baseUrl: 'http://localhost:5173/api/graphiql',
+        baseUrl: '/api/graphiql',
     } ),
     endpoints: ( { mutation, query } ) => ({
         getHello: query<BooksQuery, queryType<Book>>( {

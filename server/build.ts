@@ -14,13 +14,13 @@ export const app = express();
 export const httpServer = http.createServer(app);
 
 const ApolloServerLandingPage = () =>
-  process.env.NODE_ENV === "production"
-? ApolloServerPluginLandingPageProductionDefault({
-        embed: true,
-        graphRef: "ecommerce-stuff@current",
-        includeCookies: true,
-      })
-    : 
+//   process.env.NODE_ENV === "production"
+// ? ApolloServerPluginLandingPageProductionDefault({
+//         embed: true,
+//         graphRef: "ecommerce-stuff@current",
+//         includeCookies: true,
+//       })
+//     : 
     ApolloServerPluginLandingPageLocalDefault({
         includeCookies: true,
         embed: true,
