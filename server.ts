@@ -62,7 +62,7 @@ async function createServer() {
     .replace( ".ts", "" )
     .replace( "./api/", "/api/" )
     
-    app.use( api_name, async( req, res, next ) => {
+    app.use( api_name, bodyParser.json(), async( req, res, next ) => {
       const func = await n
       func.default( req, res, next )
     } )
