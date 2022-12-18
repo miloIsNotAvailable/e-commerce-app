@@ -42,7 +42,6 @@ export const root: rootType = {
         async login( _, args, { req, res } ) {
             try {   
 
-                res.cookie( "hey", "hi" )
                 return { ...args }
 
             } catch( e: any ) {
