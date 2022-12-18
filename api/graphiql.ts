@@ -1,15 +1,16 @@
 import { expressMiddleware } from "@apollo/server/express4";
+import bodyParser from "body-parser";
 import { NextFunction, Request } from "express";
 import context from "../graphql/context/context";
-import { server } from "../server/build";
+import { app, server } from "../server/build";
 
 ( async() => {
   await server.start(); 
 } )()
 
-export default ( req: Request, res: any, next: NextFunction ) => {
+app.use(bodyParser.json( { limit: '50mb' } ))
 
-  res.setHeader( 'Content-Type', "application/json")
+export default ( req: Request, res: any, next: NextFunction ) => {
 
   (expressMiddleware(server, {
     context: context
