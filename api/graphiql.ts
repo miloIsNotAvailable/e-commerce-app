@@ -12,7 +12,7 @@ app.use(bodyParser.json( { limit: '50mb' } ))
 
 export default ( req: Request, res: any, next: NextFunction ) => {
 
-  (expressMiddleware(server, {
+  return (expressMiddleware(server, {
     context: context
   }))( req, res, next )
 }
