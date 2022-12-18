@@ -69,7 +69,10 @@ async function createServer() {
   app.use(
     "/api/graphiql",
 
-    // cors<cors.CorsRequest>(),
+    cors( {
+      credentials: true,
+      origin: true
+    } ),
     // json(),
     expressMiddleware(server as any, {
       context: context

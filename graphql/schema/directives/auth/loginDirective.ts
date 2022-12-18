@@ -57,20 +57,20 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                             'Set-Cookie',
                             [cookies.serialize(
                                 "refresh_token", refresh_token, {
-                                    // httpOnly: true,
-                                    // sameSite: "none",
-                                    // secure: true,
+                                    httpOnly: true,
+                                    sameSite: "none",
+                                    secure: true,
                                     maxAge: 60 * 60 * 24 * 7,
-                                    // path: "/"
+                                    path: "/"
                                 } 
                                 ),
                                 cookies.serialize(
                                 "access_token", acc_token, {
-                                    // httpOnly: true,
-                                    // secure: true,
-                                    // sameSite: "none",
+                                    httpOnly: true,
+                                    secure: true,
+                                    sameSite: "none",
                                     maxAge: 60 * 60 * 24 * 7,
-                                    // path: "/"
+                                    path: "/"
                                 } 
                                 )
                             ]                         
