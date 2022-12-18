@@ -5,42 +5,10 @@ import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
 import bodyParser from 'body-parser'
-import { ApolloServer } from '@apollo/server'
-import { expressMiddleware } from '@apollo/server/express4'
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import http from 'http';
 import cors from 'cors';
-import { json } from 'body-parser';
-import context from './graphql/context/context'
-import { root } from './graphql/resolvers/resolvers'
-import { schema, schema_ } from './graphql/schema/schema'
-import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default'
-import { ApolloServerPluginLandingPageGraphQLPlayground } from '@apollo/server-plugin-landing-page-graphql-playground'
+import { app, httpServer, server } from './server/build'
 
 async function createServer() {
-  const app = express()
-  const httpServer = http.createServer( app )
-
-  const ApolloServerLandingPage = () => process.env.NODE_ENV === "production" ?       
-      ApolloServerPluginLandingPageProductionDefault( {
-        embed: true,
-        graphRef: "ecommerce-stuff@current",
-        includeCookies: true,
-      } ) : 
-      ApolloServerPluginLandingPageLocalDefault( {
-        includeCookies: true,
-        embed: true
-      } )
-
-  const server = new ApolloServer<any>({
-    typeDefs: schema,
-    schema: schema_ as any,
-    resolvers: root,
-    plugins: [
-      ApolloServerPluginDrainHttpServer({ httpServer }),
-      ApolloServerLandingPage()
-    ],
-  });
 
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
   const publicDirectoryPath = path.join(__dirname, '../public/')
@@ -70,14 +38,14 @@ async function createServer() {
 
   await server.start();
   
-  app.use(
-    "/api/graphiql",
-    cors( { origin: true, credentials: true } ),
-    json(),
-    expressMiddleware(server, {
-      context: context
-    })
-  );
+  // app.use(
+  //   "/api/graphiql",
+  //   cors( { origin: true, credentials: true } ),
+  //   json(),
+  //   expressMiddleware(server, {
+  //     context: context
+  //   })
+  // );
 
   let e = glob.sync( "./api/**/*.ts" )
 
