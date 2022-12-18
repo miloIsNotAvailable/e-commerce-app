@@ -59,7 +59,7 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                                 "refresh_token", refresh_token, {
                                     httpOnly: true,
                                     sameSite: "none",
-                                    secure: true,
+                                    secure: false,
                                     maxAge: 60 * 60 * 24 * 7,
                                     path: "/"
                                 } 
@@ -68,7 +68,7 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                                 "access_token", acc_token, {
                                     httpOnly: true,
                                     sameSite: "none",
-                                    secure: true,
+                                    secure: false,
                                     maxAge: 60 * 60 * 24 * 7,
                                     path: "/"
                                 } 
