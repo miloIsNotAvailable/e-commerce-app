@@ -9,7 +9,7 @@ import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import http from 'http';
-import cors from 'cors';
+// import cors from 'cors';
 import { json } from 'body-parser';
 import context from './graphql/context/context'
 import { root } from './graphql/resolvers/resolvers'
@@ -68,8 +68,8 @@ async function createServer() {
   app.use(
     "/api/graphiql",
 
-    cors<cors.CorsRequest>(),
-    json(),
+    // cors<cors.CorsRequest>(),
+    // json(),
     expressMiddleware(server as any, {
       context: context
     })

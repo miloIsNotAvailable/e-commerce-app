@@ -55,7 +55,8 @@ const SignInModal: FC = () => {
         loginUser( {
             body: USER_QUERY,
             headers: {
-                "authorization": "Bearer UYqwouvfq384t249gbieprbgo3ibf391"
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': "true"
             },
             variables: {
                 email: email!,
