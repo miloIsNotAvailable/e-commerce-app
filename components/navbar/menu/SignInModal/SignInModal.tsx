@@ -72,7 +72,7 @@ const SignInModal: FC = () => {
     }, [ data, error ] )
 
     return (
-        <div className={ styles.modal_wrap }>
+        <form className={ styles.modal_wrap }>
             <Close/>
             <Email/>
             <Password/>
@@ -92,7 +92,7 @@ const SignInModal: FC = () => {
                         sign in
                 </Button>
             </div>
-        </div>
+        </form>
     )
 }
 

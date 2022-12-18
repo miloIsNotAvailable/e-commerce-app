@@ -44,6 +44,12 @@ async function createServer() {
   const publicDirectoryPath = path.join(__dirname, '../public/')
   app.use(express.static(publicDirectoryPath))
   
+  app.use(
+    cors({
+      origin: true,
+      credentials: true
+    }) 
+  )
   // parse application/json
   app.use(bodyParser.json( { limit: '50mb' } ))
 
