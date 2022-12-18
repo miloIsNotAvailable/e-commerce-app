@@ -4,9 +4,11 @@ import express from 'express'
 import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
-import bodyParser from 'body-parser'
+import bodyParser, { json } from 'body-parser'
 import cors from 'cors';
 import { app, httpServer, server } from './server/build'
+import { expressMiddleware } from '@apollo/server/express4'
+import context from './graphql/context/context'
 
 async function createServer() {
 
@@ -36,15 +38,19 @@ async function createServer() {
   app.use(vite.middlewares)
   app.use( cookies() )
 
-  await server.start();
+  // await server.start();
   
   // app.use(
   //   "/api/graphiql",
   //   cors( { origin: true, credentials: true } ),
   //   json(),
-  //   expressMiddleware(server, {
-  //     context: context
-  //   })
+  //   async( req: any, res: any, next: any ) => {
+
+  //     const v = expressMiddleware(server, {
+  //       context: context
+  //     })
+  //     v( req, res, next )
+  //   }
   // );
 
   let e = glob.sync( "./api/**/*.ts" )
