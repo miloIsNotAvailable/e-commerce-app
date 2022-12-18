@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect'
-import { act, render, screen, waitFor } from '@testing-library/react'
+import { act, configure, fireEvent, queryByAttribute, render, screen, waitFor } from '@testing-library/react'
 import Home from '../../pages/index';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -11,13 +11,17 @@ import { FC } from 'react';
 import { renderWithProviders } from '../test-utils';
 import { setupServer } from 'msw/node';
 
+configure( {
+    testIdAttribute: "id"
+} )
+
 /**
  * @jest-environment jsdom
  */
 
-// when receiving a get request to the `/api/graphql` endpoint
+// when receiving a get request to the `/api/graphiql` endpoint
 export const handlers = [
-    graphql.query("Hey", (req, res, ctx) => {
+    graphql.query("Login", (req, res, ctx) => {
         return res(ctx.data({ hello: "hi" }))
     })
 ]
@@ -40,9 +44,9 @@ afterEach(() => {
 // Clean up after the tests are finished.
 afterAll(() => server.close());
 
-test('Renders main page correctly', async() => {
+test('check if login works', async() => {
     if( typeof window === undefined ) return
-    await act( async() => {
+    const dom = await act( async() => {
         renderWithProviders(
             <Provider store={ store }>
                 <BrowserRouter>
@@ -53,8 +57,20 @@ test('Renders main page correctly', async() => {
     } )
 
     // expect(screen.getByText('no data')).toBeInTheDocument()
-    
-    await waitFor(() =>
-        expect( screen.getByText('hi') ).toBeInTheDocument()
-    )
+    // screen.getByTestId( "login-button" ).click()
+    // fireEvent( screen.getByTestId( "email" ), 
+    //     ({ 
+    //         currentTarget: { value: "hello" } 
+    //     }) as any 
+    // )
+
+    // fireEvent( screen.getByTestId( "password" ), 
+    //     ({ 
+    //         currentTarget: { value: "hello" } 
+    //     }) as any 
+    // )
+
+    // await waitFor(() =>
+    //     expect( screen.getByText('hi') ).toBeInTheDocument()
+    // )
 });

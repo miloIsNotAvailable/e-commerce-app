@@ -3,7 +3,7 @@ import { FC, MouseEvent, useEffect, useState } from "react";
 import { useModalContext } from "@contexts/ModalContext";
 import { useRedux } from '@hooks/useRedux'
 import { userDataState } from "../../../../interfaces/reduxInterfaces";
-import { useGetHelloQuery, useGetUserQuery } from "../../../../redux/api/fetchApi";
+import { useGetHelloQuery, useGetUserQuery, useLazyGetUserQuery } from "../../../../redux/api/fetchApi";
 import Button from "../../../custom/Button";
 import { styles } from "../../build/NavbarStyles";
 import Email from "./Forms/Email";
@@ -18,26 +18,25 @@ const BOOK_QUERY = gql`query Books {
     }
   }`
   
-  const USER_QUERY = gql`query User {
-    user {
+  const USER_QUERY = gql`query Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
       email
       password
       username
     }
   }`
 
-
 const SignInModal: FC = () => {
 
     const [ { open, signUp }, setOpen ] = useModalContext()
-    const [ { userData } ] = useRedux<userDataState>()
+    const [ { userData: { 
+        email, 
+        username, 
+        password,
+        error: loginDataError
+    } } ] = useRedux<userDataState>()
 
-    const { data, isLoading, error } = useGetUserQuery( {
-        body: USER_QUERY,
-        headers: {
-            "authorization": "Bearer UYqwouvfq384t249gbieprbgo3ibf391"
-        }
-    } )
+    const [loginUser, { data, isLoading, error }] = useLazyGetUserQuery()
 
     const handleSignUp: ( e: MouseEvent<HTMLButtonElement> ) => void 
     = e => {
@@ -48,19 +47,27 @@ const SignInModal: FC = () => {
         } )
     }
 
-    useEffect( () => {
-        ( async() => {
-            try {
-                data && console.log( data.user )
-            } catch( e ) {
-                console.log( error )
+    const handleLoginUser: ( e: MouseEvent<HTMLButtonElement> ) => void 
+    = e => {
+        e.preventDefault()
+        if( loginDataError?.email || loginDataError?.password || loginDataError?.username ) return
+
+        loginUser( {
+            body: USER_QUERY,
+            headers: {
+                "authorization": "Bearer UYqwouvfq384t249gbieprbgo3ibf391"
+            },
+            variables: {
+                email: email!,
+                password: password!,
+                username: username!
             }
-        } )()
-    }, [ data, isLoading, error ] )
+        } )
+    }
 
     useEffect( () => {
-        console.log( userData )
-    }, [ userData ] ) 
+        console.log( data || error?.message )
+    }, [ data, error ] )
 
     return (
         <form className={ styles.modal_wrap }>
@@ -78,6 +85,7 @@ const SignInModal: FC = () => {
                     style={ {
                         width: "calc( 100% - 1.5rem )"
                     } }
+                    onClick={ handleLoginUser }
                 >
                         sign in
                 </Button>

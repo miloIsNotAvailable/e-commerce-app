@@ -47,6 +47,16 @@ export const root: rootType = {
             } catch( e: any ) {
                 console.log( e )
             }
-        }
+        },
+
+        async register( _, args, { req } ) {
+            try {
+    
+                return { ...args }
+
+            } catch( e: any ) {
+                console.log( e )
+            }
+        },
     },
 }

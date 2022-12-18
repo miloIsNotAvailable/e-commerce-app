@@ -25,6 +25,7 @@ const SignIn: FC = () => {
             setOpen 
         } }>
             <div 
+                id={ "login-button" }
                 className={ styles.signin }
                 onClick={ handleOpenModal }
             >

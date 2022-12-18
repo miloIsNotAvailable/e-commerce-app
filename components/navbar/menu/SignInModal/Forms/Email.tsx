@@ -20,6 +20,7 @@ const Email: FC = () => {
     return (
         <div className={ styles.wrap_form }>
             <Form
+                id={ "email" }
                 // ref={ formRef }
                 placeholder={ "email" } 
                 type={ "email" }

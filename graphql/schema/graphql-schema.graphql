@@ -6,6 +6,10 @@ directive @login (
   requires: Role = USER
 ) on OBJECT | FIELD_DEFINITION
 
+directive @register (
+  requires: Role = USER
+) on OBJECT | FIELD_DEFINITION
+
 directive @auth (
   requires: Role = USER
 ) on OBJECT | FIELD_DEFINITION
@@ -27,6 +31,13 @@ type loginUser {
   username: String!
 }
 
+type registerUser {
+  email: String!
+  password: String!
+  username: String!
+  id: String
+}
+
 type User @auth( requires: USER ) {
   email: String!
   password: String!
@@ -42,4 +53,9 @@ type Query {
   hello: String
   user: User
   login( email: String!, password: String! ): loginUser @login
+  register( 
+    email: String!, 
+    password: String!, 
+    username: String!
+  ): registerUser @register @login
 }

@@ -21,6 +21,7 @@ const Password: FC = () => {
         <div className={ styles.wrap_form }>
             <Form
                 // ref={ formRef }
+                id={ "password" }
                 placeholder={ "password" } 
                 type={ "password" }
                 onChange={ handleOnChange }

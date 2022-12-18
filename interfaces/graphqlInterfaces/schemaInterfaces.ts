@@ -12,4 +12,4 @@ export type rootType = {
 
 export type RootFunction = ( args: any, context: contextType ) => any | Promise<any>
 
-export type contextType = ExpressContextFunctionArgument
+export type contextType = ExpressContextFunctionArgument & { token: string }

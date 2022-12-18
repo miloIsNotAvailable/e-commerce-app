@@ -21,6 +21,7 @@ const Username: FC = () => {
         <div className={ styles.wrap_form }>
             <Form
                 // ref={ formRef }
+                id={ "username" }
                 placeholder={ "username" } 
                 type={ "username" }
                 onChange={ handleOnChange }
