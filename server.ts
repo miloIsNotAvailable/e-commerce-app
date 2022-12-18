@@ -68,12 +68,11 @@ async function createServer() {
   
   app.use(
     "/api/graphiql",
-
     cors( {
       credentials: true,
-      origin: true
+      origin: "http://localhost:5173"
     } ),
-    // json(),
+    json(),
     expressMiddleware(server as any, {
       context: context
     })
