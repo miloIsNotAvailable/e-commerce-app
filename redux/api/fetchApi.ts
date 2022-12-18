@@ -25,7 +25,7 @@ const graphqlBaseQuery =
 type queryType<T=unknown> = {
     body: string, 
     variables?: T
-    headers?: HeadersInit
+    headers?: any
 }
 
 export const fetchApi = createApi( {

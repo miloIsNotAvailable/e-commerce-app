@@ -1,5 +1,6 @@
 import { rootType } from "../../interfaces/graphqlInterfaces/schemaInterfaces";
 import { User } from "@graphql-types"
+import cookie from 'cookie'
 
 export const root: rootType = {
     Query: {
@@ -38,10 +39,10 @@ export const root: rootType = {
                 username: "hello"
             }
         },
-        async login( _, args, { req } ) {
-            try {
-    
-                console.log( args )
+        async login( _, args, { req, res } ) {
+            try {   
+
+                res.cookie( "hey", "hi" )
                 return { ...args }
 
             } catch( e: any ) {
@@ -49,9 +50,9 @@ export const root: rootType = {
             }
         },
 
-        async register( _, args, { req } ) {
+        async register( _, args, { req, res } ) {
             try {
-    
+
                 return { ...args }
 
             } catch( e: any ) {

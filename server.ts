@@ -14,18 +14,26 @@ import { json } from 'body-parser';
 import context from './graphql/context/context'
 import { root } from './graphql/resolvers/resolvers'
 import { schema, schema_ } from './graphql/schema/schema'
-import { authDirectiveTransformer, authDirectiveTypeDefs } from './graphql/schema/directives/authDirective'
+import { ApolloServerPluginLandingPageLocalDefault, ApolloServerPluginLandingPageProductionDefault } from '@apollo/server/plugin/landingPage/default'
 
 async function createServer() {
   const app = express()
   const httpServer = http.createServer( app )
-  
 
   const server = new ApolloServer<{ token: string }>({
     typeDefs: schema,
     schema: schema_ as any,
     resolvers: root,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      process.env.NODE_ENV === "production" ?       
+      ApolloServerPluginLandingPageProductionDefault( {
+        includeCookies: true
+      } ) : 
+      ApolloServerPluginLandingPageLocalDefault( {
+        includeCookies: true
+      } ),
+    ],
   });
 
   app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }))
@@ -47,7 +55,18 @@ async function createServer() {
   // if you use your own express router (express.Router()), you should use router.use
   app.use(vite.middlewares)
   app.use( cookies() )
-  app.use( cors( { credentials: true } ) )
+  // app.use( cors( { credentials: true } ) )
+
+  await server.start();
+  
+  app.use(
+    "/api/graphiql",
+    cors(),
+    json(),
+    expressMiddleware(server as any, {
+      context: context
+    })
+  );
 
   let e = glob.sync( "./api/**/*.ts" )
 
@@ -63,20 +82,6 @@ async function createServer() {
       func.default( req, res, next )
     } )
   } )
-
-  await server.start();
-  
-  app.use(
-    "/api/graphiql",
-    cors( {
-      credentials: true,
-      origin: ["http://localhost:5173", "https://e-commerce-app-miloisnotavailable.vercel.app"]
-    } ),
-    json(),
-    expressMiddleware(server as any, {
-      context: context
-    })
-  );
   
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl
