@@ -9,6 +9,9 @@ import { app, server } from "../server/build";
 } )()
 
 app.use(bodyParser.json( { limit: '50mb' } ))
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 export default ( req: Request, res: any, next: NextFunction ) => {
 
