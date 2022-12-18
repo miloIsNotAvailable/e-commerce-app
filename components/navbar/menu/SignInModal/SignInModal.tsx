@@ -56,7 +56,7 @@ const SignInModal: FC = () => {
             body: USER_QUERY,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Credentials': "true"
+                'Access-Control-Allow-Credentials': "true",
             },
             variables: {
                 email: email!,

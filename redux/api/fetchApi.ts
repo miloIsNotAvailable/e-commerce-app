@@ -52,7 +52,10 @@ export const fetchApi = createApi( {
                 url: `/graphiql`,
                 method: 'POST',
                 credentials: "include",
-                headers: { ...requestHeaders, ...headers },
+                headers: {     
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials': true,
+                },
                 body: body,
                 variables: variables
             } )
