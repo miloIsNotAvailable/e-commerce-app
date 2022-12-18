@@ -29,6 +29,8 @@ async function createServer() {
       ApolloServerPluginDrainHttpServer({ httpServer }),
       process.env.NODE_ENV === "production" ?       
       ApolloServerPluginLandingPageProductionDefault( {
+        embed: true,
+        graphRef: "My-Graph-ce5o3g@current",
         includeCookies: true,
       } ) : 
       ApolloServerPluginLandingPageLocalDefault( {

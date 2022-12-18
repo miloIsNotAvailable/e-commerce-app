@@ -17,18 +17,20 @@ export default async function context ({ req, res }: ExpressContextFunctionArgum
         
         return { token: access_token_cookie, req, res }
     } catch( e ) {
-        console.log( e )
+        // console.log( e )
         
-        const refresh_token_decoded = jwt.verify( refresh_token_cookie, process.env.REFRESH_TOKEN! )
+        const refresh_token_decoded: any = jwt.verify( refresh_token_cookie, process.env.REFRESH_TOKEN! )
         if( !refresh_token_decoded ) {
             throw new Error( "invalid refresh token" )
         }
+
+        console.log( refresh_token_decoded )
 
         res.setHeader( 
             'Set-Cookie',
             [
                 cookies.serialize(
-                "access_token", refresh_token_decoded as string, {
+                "access_token", refresh_token_decoded, {
                     httpOnly: true,
                     secure: true,
                     maxAge: 60 * 60 * 24 * 7,
