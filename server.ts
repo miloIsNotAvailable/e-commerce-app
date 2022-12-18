@@ -70,7 +70,7 @@ async function createServer() {
     "/api/graphiql",
     cors( {
       credentials: true,
-      origin: "http://localhost:5173"
+      origin: ["http://localhost:5173", "https://e-commerce-app-miloisnotavailable.vercel.app"]
     } ),
     json(),
     expressMiddleware(server as any, {
