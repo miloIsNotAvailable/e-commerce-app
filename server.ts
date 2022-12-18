@@ -9,7 +9,7 @@ import { ApolloServer } from '@apollo/server'
 import { expressMiddleware } from '@apollo/server/express4'
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import http from 'http';
-// import cors from 'cors';
+import cors from 'cors';
 import { json } from 'body-parser';
 import context from './graphql/context/context'
 import { root } from './graphql/resolvers/resolvers'
@@ -47,6 +47,7 @@ async function createServer() {
   // if you use your own express router (express.Router()), you should use router.use
   app.use(vite.middlewares)
   app.use( cookies() )
+  app.use( cors( { credentials: true } ) )
 
   let e = glob.sync( "./api/**/*.ts" )
 
