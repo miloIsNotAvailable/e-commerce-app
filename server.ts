@@ -21,22 +21,24 @@ async function createServer() {
   const app = express()
   const httpServer = http.createServer( app )
 
-  const server = new ApolloServer<{ token: string }>({
-    typeDefs: schema,
-    schema: schema_ as any,
-    resolvers: root,
-    plugins: [
-      ApolloServerPluginDrainHttpServer({ httpServer }),
-      process.env.NODE_ENV === "production" ?       
+  const ApolloServerLandingPage = () => process.env.NODE_ENV === "production" ?       
       ApolloServerPluginLandingPageProductionDefault( {
         embed: true,
-        graphRef: "My-Graph-ce5o3g@current",
+        graphRef: "ecommerce-stuff@current",
         includeCookies: true,
       } ) : 
       ApolloServerPluginLandingPageLocalDefault( {
         includeCookies: true,
         embed: true
-      } ),
+      } )
+
+  const server = new ApolloServer<any>({
+    typeDefs: schema,
+    schema: schema_ as any,
+    resolvers: root,
+    plugins: [
+      ApolloServerPluginDrainHttpServer({ httpServer }),
+      ApolloServerLandingPage()
     ],
   });
 
@@ -70,16 +72,12 @@ async function createServer() {
   
   app.use(
     "/api/graphiql",
-    cors( { origin: "*" } ),
+    cors( { origin: true, credentials: true } ),
     json(),
-    expressMiddleware(server as any, {
+    expressMiddleware(server, {
       context: context
     })
   );
-
-  if (process.env.NODE_ENV === 'production') {
-    app.set('trust proxy', 1); // trust first proxy
-  }
 
   let e = glob.sync( "./api/**/*.ts" )
 
