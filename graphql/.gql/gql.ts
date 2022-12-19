@@ -13,18 +13,18 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "query Books {\n    books {\n      author\n      title\n    }\n  }": types.BooksDocument,
     "query Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n      password\n      username\n    }\n  }": types.LoginDocument,
+    "\nquery Register($email: String!, $password: String!, $username: String!) {\n    register(email: $email, password: $password, username: $username) {\n      email\n      id\n      password\n      username\n    }\n  }": types.RegisterDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query Books {\n    books {\n      author\n      title\n    }\n  }"): (typeof documents)["query Books {\n    books {\n      author\n      title\n    }\n  }"];
+export function graphql(source: "query Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n      password\n      username\n    }\n  }"): (typeof documents)["query Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n      password\n      username\n    }\n  }"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n      password\n      username\n    }\n  }"): (typeof documents)["query Login($email: String!, $password: String!) {\n    login(email: $email, password: $password) {\n      email\n      password\n      username\n    }\n  }"];
+export function graphql(source: "\nquery Register($email: String!, $password: String!, $username: String!) {\n    register(email: $email, password: $password, username: $username) {\n      email\n      id\n      password\n      username\n    }\n  }"): (typeof documents)["\nquery Register($email: String!, $password: String!, $username: String!) {\n    register(email: $email, password: $password, username: $username) {\n      email\n      id\n      password\n      username\n    }\n  }"];
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.

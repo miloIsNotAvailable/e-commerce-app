@@ -15,8 +15,6 @@ app.use(bodyParser.urlencoded({
 
 export default ( req: Request, res: any, next: NextFunction ) => {
 
-  console.log( req.body )
-
   return (expressMiddleware(server, {
     context: context
   }))( req, res, next )

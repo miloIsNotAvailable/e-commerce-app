@@ -43,7 +43,7 @@ registerDirectiveTransformer: (schema: GraphQLSchema) =>
                     return resolve(source, user, context, info);
                 } catch( e: any ) {
                     console.log( e?.message )
-                    throw new GraphQLError( e )
+                    throw new GraphQLError( e?.message )
                 }
             };
             return fieldConfig;

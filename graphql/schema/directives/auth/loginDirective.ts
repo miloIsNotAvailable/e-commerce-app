@@ -44,7 +44,12 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                     const { req, res } = context
                     const refresh_token_cookie = req.cookies["refresh_token"]
 
-                    if( refresh_token_cookie ) throw new Error( "you're already logged in" )
+                    if( refresh_token_cookie ) throw new GraphQLError( "you're already logged in", {
+                        extensions: {
+                            code: "BAD_REQUEST"
+                        },
+                        path: []
+                    } )
               
                     const refresh_token = jwt.sign( user!, process.env.REFRESH_TOKEN!, {} )
               
@@ -80,7 +85,12 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
                     return resolve(source, user, context, info);
                 } catch( e: any ) {
                     console.log( e )
-                    throw new GraphQLError( e )
+                    throw new GraphQLError( e?.message, {
+                        extensions: {
+                            code: 'BAD_USER_INPUT',
+                        },
+                        path: []
+                    } )
                 }
             };
             return fieldConfig;
@@ -101,7 +111,12 @@ const getUser: getUserFnType = async( args ) => {
         }
     } ) 
     
-    if( !data ) throw new Error( "invalid email or password" )
+    if( !data ) throw new GraphQLError( "invalid email or password", {
+        extensions: {
+            code: 'BAD_USER_INPUT',
+        },
+        path: []
+    } )
 
     return data
 }

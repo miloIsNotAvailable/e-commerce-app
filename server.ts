@@ -4,11 +4,9 @@ import express from 'express'
 import { createServer as createViteServer } from 'vite'
 import cookies from 'cookie-parser'
 import glob from 'glob'
-import bodyParser, { json } from 'body-parser'
+import bodyParser from 'body-parser'
 import cors from 'cors';
-import { app, httpServer, server } from './server/build'
-import { expressMiddleware } from '@apollo/server/express4'
-import context from './graphql/context/context'
+import { app, httpServer } from './server/build'
 
 async function createServer() {
 
@@ -37,21 +35,6 @@ async function createServer() {
   // if you use your own express router (express.Router()), you should use router.use
   app.use(vite.middlewares)
   app.use( cookies() )
-
-  // await server.start();
-  
-  // app.use(
-  //   "/api/graphiql",
-  //   cors( { origin: true, credentials: true } ),
-  //   json(),
-  //   async( req: any, res: any, next: any ) => {
-
-  //     const v = expressMiddleware(server, {
-  //       context: context
-  //     })
-  //     v( req, res, next )
-  //   }
-  // );
 
   let e = glob.sync( "./api/**/*.ts" )
 
