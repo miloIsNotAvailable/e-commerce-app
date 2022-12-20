@@ -30,10 +30,10 @@ const SignInModal: FC = () => {
     return (
         <form className={ styles.modal_wrap }>
             <Close/>
+            <Error error={ error?.message }/>
             <Email/>
             <Password/>
             <div className={ styles.modal_buttons }>
-                <Error error={ error?.message }/>
                 <button 
                     className={ styles.modal_button_redirect }
                     onClick={ handleSignUp }

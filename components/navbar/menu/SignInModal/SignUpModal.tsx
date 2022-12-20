@@ -26,11 +26,11 @@ const SignUpModal: FC = () => {
     return (
         <form className={ styles.modal_wrap }>
             <Close/>
+            <Error error={ error?.message }/>
             <Email/>
             <Password/>
             <Username/>
             <div className={ styles.modal_buttons }>
-                <Error error={ error?.extentions?.code }/>
                 <button 
                     className={ styles.modal_button_redirect }
                     onClick={ handleSignUp }

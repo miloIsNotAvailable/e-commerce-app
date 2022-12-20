@@ -203,8 +203,8 @@
 }
 
 .modal_button_error {
-    align-self: flex-end;
-    justify-self: flex-start;
+    align-self: center;
+    /* justify-self: flex-start; */
     font-family: 'PP Neue Montreal';
     font-weight: normal;
     color: var(--red);
