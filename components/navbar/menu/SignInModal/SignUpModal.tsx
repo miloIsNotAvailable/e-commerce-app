@@ -26,7 +26,7 @@ const SignUpModal: FC = () => {
     return (
         <form className={ styles.modal_wrap }>
             <Close/>
-            <Error error={ error?.message }/>
+            {error?.message && <Error error={ error?.message }/>}
             <Email/>
             <Password/>
             <Username/>
