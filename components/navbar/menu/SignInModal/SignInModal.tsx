@@ -23,9 +23,9 @@ const SignInModal: FC = () => {
         } )
     }
 
-    useEffect( () => {
-        console.log( data || error?.message )
-    }, [ data, error ] )
+    // useEffect( () => {
+    //     console.log( data || error?.message )
+    // }, [ data, error ] )
 
     return (
         <form className={ styles.modal_wrap }>
@@ -44,6 +44,7 @@ const SignInModal: FC = () => {
                     style={ {
                         width: "calc( 100% - 1.5rem )"
                     } }
+                    id="sign-in-button"
                     onClick={ handleLoginUser }
                 >
                         sign in

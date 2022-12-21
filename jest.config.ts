@@ -4,8 +4,7 @@ export default {
       "^.+\\.(ts|js)x?$": "ts-jest"  
     },
     testMatch: [
-      '<rootDir>/tests/__test__/*.test.js',
-      '<rootDir>/tests/__test__/*.test.tsx',
+      '<rootDir>/**/*/tests/**/*.test.tsx',
     ],
     moduleNameMapper: {
       '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/tests/mocks/fileMocks.js',

@@ -35,11 +35,19 @@ type queryType<T = unknown> = {
   headers?: any;
 };
 
+function areWeTestingWithJest() {
+    if( typeof window === "undefined" ) return "/api/graphql"
+    if( typeof process !== "undefined" && process.env.JEST_WORKER_ID !== undefined ) 
+        return 'http://localhost:5173/api/graphiql'
+    
+    return "/api/graphiql" 
+}
+
 export const fetchApi = createApi({
   reducerPath: "api",
   tagTypes: [],
   baseQuery: graphqlBaseQuery({
-    baseUrl: "/api/graphiql",
+    baseUrl: areWeTestingWithJest(),
   }),
   endpoints: ({ mutation, query }) => ({
     getHello: query<any, queryType<Book>>({
