@@ -25,6 +25,43 @@
     text-transform: uppercase;  
 }
 
+.categories {
+    position: relative;
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: clamp( .7rem, 3vw, 1rem );  
+    text-transform: uppercase;  
+}
+
+.categories_menu {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 4rem 4rem 4rem;
+    grid-template-rows: var(--font-color) var(--font-color) var(--font-color);
+    height: calc( 2rem + 3 * var(--font-color) );
+    max-height: 0rem;
+    gap: 1rem;
+    padding: 0rem;
+    text-align: left;
+    background-color: var(--bg);
+    border: var(--border);
+    list-style-type: none;
+    text-transform: none;  
+    z-index: 4;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 200ms ease;
+}
+
+.categories:focus .categories_menu,  
+.categories:active .categories_menu {
+    max-height: calc( 2rem + 3 * var(--font-color) );
+    gap: 1rem;
+    opacity: 1;
+    padding: 1rem 0.5rem;
+}
+
 .signin {
     font-family: "PP Neue Montreal";
     font-weight: bold;
