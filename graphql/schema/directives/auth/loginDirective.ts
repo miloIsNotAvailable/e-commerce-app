@@ -8,10 +8,26 @@ import { contextType } from "../../../../interfaces/graphqlInterfaces/schemaInte
 
 type getUserFnType = ( args: { email: string, password: string } ) => Promise<Users | null | undefined>
 
+
+type directiveReturnType = {
+    loginDirectiveTypeDefs: string,
+    loginDirectiveTransformer: (schema: GraphQLSchema) => GraphQLSchema
+}
+
+/**
+ * 
+ * @param directiveName resolves graphql schema ```@login``` directive
+ * @param getUserFn is a function that returns
+ * User object
+ * @returns ```loginTransformerTypeDefs``` which contains directive initialization and 
+ * ```loginDirectiveTransformer``` resolver and creates refresh and access tokens
+ * as cookies if user is not already logged in 
+ */
+
 export default function loginDirective(
 directiveName: string,
 getUserFn: getUserFnType
-) {
+): directiveReturnType {
 const typeDirectiveArgumentMaps: Record<string, any> = {};
 
 return {
@@ -100,6 +116,12 @@ loginDirectiveTransformer: (schema: GraphQLSchema) =>
     }),
 };
 }
+
+/**
+ * 
+ * @param args is the user email and password
+ * @returns User object
+ */
 
 const getUser: getUserFnType = async( args ) => {    
 

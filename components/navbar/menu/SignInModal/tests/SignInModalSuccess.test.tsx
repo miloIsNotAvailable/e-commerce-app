@@ -5,12 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '../../../../../redux/store';
 import { fetchApi } from '../../../../../redux/api/fetchApi';
-// import { server } from '../mocks/api/server';
 import { graphql, rest } from 'msw'
-import { FC } from 'react';
 import { renderWithProviders } from '../../../../../tests/test-utils';
 import { setupServer } from 'msw/node';
-import { GraphQLError } from 'graphql-request/dist/types'
 import SignInModal from '../SignInModal';
 
 configure( {
@@ -20,7 +17,13 @@ configure( {
 // when receiving a get request to the `/api/graphiql` endpoint
 export const handlers = [
     graphql.query("Login", (req, res, ctx) => {
-        return res(ctx.data( { email: "hello@gmail.com", password: "password", username: "hello" } ))
+        return res(
+          ctx.data({
+            email: "hello@gmail.com",
+            password: "password",
+            username: "hello",
+          })
+        );
     })
 ]
 
@@ -41,16 +44,6 @@ afterEach(() => {
 
 test('pass on valid email and password', async() => {
     if( typeof window === undefined ) return
-    
-    // await act( async() => {
-    //     renderWithProviders(
-    //         <Provider store={ store }>
-    //             <BrowserRouter>
-    //                 <SignInModal/>
-    //             </BrowserRouter> 
-    //         </Provider>
-    //     ) 
-    // } )
 
     const { asFragment, getByTestId } = renderWithProviders(
         <Provider store={ store }>
