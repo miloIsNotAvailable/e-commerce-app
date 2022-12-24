@@ -1,0 +1,1 @@
+export const items = [ "tables", "books", "beds", "rugs" ]

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { items } from "../../../constants/items";
 import { styles } from "../build/NavbarStyles";
 
 const Categories: FC = () => {
@@ -7,10 +8,11 @@ const Categories: FC = () => {
         <div className={ styles.categories } tabIndex={ 0 }>
             categories
             <ul className={ styles.categories_menu }>
-                <li>hey</li>
-                <li>hey</li>
-                <li>hey</li>
-                <li>hey</li>
+                { items.map( items => (
+                    <li key={ items }>
+                        { items }
+                    </li>
+                ) ) }
             </ul>
         </div>
     )

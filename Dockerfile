@@ -3,12 +3,18 @@ FROM node:18
 WORKDIR /gapp
 
 COPY package*.json ./
+
 COPY prisma ./prisma/
 
+COPY .env ./
+
+COPY tsconfig.json ./
+
 RUN npm install
-RUN npm run build
 
 COPY . .
+
+RUN npx prisma generate
 
 ENV PORT=5173
 

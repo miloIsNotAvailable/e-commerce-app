@@ -62,6 +62,14 @@
     padding: 1rem 0.5rem;
 }
 
+.categories_menu li {
+    cursor: pointer
+}
+
+.categories_menu li:hover {
+    color: var(--red);
+}
+
 .signin {
     font-family: "PP Neue Montreal";
     font-weight: bold;
@@ -94,11 +102,59 @@
 }
 
 .mode_icon {
+    position: relative;
     cursor: pointer;
     display: grid;
     place-items: center;
     width: var(--icon-size);
     height: var(--icon-size);
+}
+
+.mode_icon_modal {
+    position: absolute;
+    top: calc(3rem - 3px);
+    right: 0;
+    display: grid;
+    grid-auto-rows: 2rem;
+    padding: 0;
+    width: calc( 2px + var(--font-size) * 5 + 10rem - var(--icon-size) * .5 );
+    background-color: var(--bg);
+    border: var(--border);
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: clamp( .7rem, 3vw, 1rem );
+    z-index: 4;
+    height: max-content;
+    max-height: 0;
+    gap: .5rem;
+    opacity: 0;;
+    overflow-y: hidden;
+    transition: all 100ms ease;
+}
+
+.mode_icon:active .mode_icon_modal, 
+.mode_icon:focus .mode_icon_modal {
+    opacity: 1;
+    max-height: calc( 3rem + 3 * clamp( .7rem, 3vw, 1rem ) + 2 * .5rem );
+    padding: 1rem;
+}
+
+.mode_icon_modal li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    /* text-align: end; */
+}
+
+.mode_icon_modal_link_wrap {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    text-decoration: none;
+    color: var(--font-color);
 }
 
 .modal_wrap {

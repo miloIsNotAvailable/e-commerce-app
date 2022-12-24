@@ -36,7 +36,7 @@ type queryType<T = unknown> = {
 };
 
 function areWeTestingWithJest() {
-    if( typeof window === "undefined" ) return "/api/graphql"
+    if( typeof window === "undefined" ) return "/api/graphiql"
     if( typeof process !== "undefined" && process.env.JEST_WORKER_ID !== undefined ) 
         return 'http://localhost:5173/api/graphiql'
     
