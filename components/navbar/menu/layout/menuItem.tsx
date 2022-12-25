@@ -11,7 +11,7 @@ const MenuItem: FC<MenuItemProps> = ( { link } ) => {
     return (
         <li>
             <Link 
-                to={ `/${ link }` } 
+                to={ `/${ link.replace( " ", "-" ) }` } 
                 className={ styles.mode_icon_modal_link_wrap }
             >
                 <p>{ "←" }</p>

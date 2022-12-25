@@ -1,0 +1,48 @@
+.page_wrap {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 4rem 4rem auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+.page_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* margin: 0 auto; */
+    width: calc( 100% - 4rem );
+    padding: 0 2rem;
+    height: 100%;
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: var(--font-size);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--font-color);
+}
+
+.page_title * {
+    padding: none;
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: var(--font-size);
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.page_title button {
+    cursor: pointer;
+    margin: none;
+    transition: all 100ms ease;
+}
+
+.page_title button:hover {
+    cursor: pointer;
+    margin: none;
+    color: var(--red);
+}
