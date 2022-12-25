@@ -4,20 +4,35 @@ import Fallback from "../LazyLoad/Fallback";
 import { styles } from "./BlockStyles";
 const Image = lazy( () => import( "./Image" ) )
 
-const Block: FC = () => {
+interface BlockProps {
+    title?: string
+    desc?: string
+    img?: string
+}
+
+const Block: FC<BlockProps> = ( { desc, img, title } ) => {
 
     return (
         <div className={ styles.block_wrap }>
             <Suspense
-                fallback={ <Fallback/> }
+                fallback={ 
+                    <Fallback 
+                        display={ "flex" }
+                        alignSelf={ "flex-end" }
+                        width={ "100%" }
+                        height={ "calc( 100% - 1rem )" }
+                        margin={ "0" }
+                        borderTop={ "var(--border)" }
+                    />
+                }
             >
-                <Image src={ "" }/>
+                <Image src={ img || "" }/>
             </Suspense>
             <p className={ styles.title }>
-                
+                { title }
             </p>
             <p className={ styles.desc }>
-                
+                { desc }
             </p>
             <nav className={ styles.button_wrap }>
                 <Button

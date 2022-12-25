@@ -15,6 +15,7 @@
     width: 100%;
     height: calc( 100% - 1rem );
     background-color: var(--scene-bg);
+    border-top: var(--border);
 }
 
 .title {
