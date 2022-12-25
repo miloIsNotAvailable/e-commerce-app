@@ -15,6 +15,7 @@
   --font-size: clamp( .7rem, 3vw, 1rem );
   --font-color: white;
   --red: #FF9494;
+  --scene-bg: #FF90AD;
 
   background-color: var(--bg);
 

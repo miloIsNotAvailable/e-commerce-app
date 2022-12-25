@@ -1,4 +1,5 @@
 import { FC } from "react";
+import Block from "../../custom/Block/Block";
 import PageLayout from "../../custom/PageLayout";
 import DescInput from "../inputs/DescInput";
 import ImageInput from "../inputs/ImageInput";
@@ -17,6 +18,7 @@ const SellItem: FC = () => {
                     <DescInput/>
                     <Submit/>
                 </div>
+                <Block/>
             </div>
         </PageLayout>
     )
