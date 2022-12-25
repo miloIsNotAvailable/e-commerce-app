@@ -2,6 +2,7 @@
     display: grid;
     width: 100%;
     grid-template-columns: 50% 50%;
+    /* grid-template-rows: 50% 4rem 6rem 4rem; */
 }
 
 .sell_item_input {
@@ -12,7 +13,7 @@
     outline: none;
     border: var(--border);
     width: 50vw;
-    height: 50vh;
+    height: 50%;
 }
 
 .sell_item_input::before {
@@ -30,4 +31,94 @@
     width: 100%;
     height: 100%;
     opacity: 0;
+}
+
+.title_input {
+    display: flex;
+    width: calc(100% - 4rem);
+    height: 4rem;
+    outline: none;
+    background-color: var(--bg);
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: calc( var(--font-size) * 1.5 );
+    border: var(--border);
+    border-top: 0;
+    padding: 0 2rem;
+}
+
+.title_input::placeholder {
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: calc( var(--font-size) * 1.5 );
+    opacity: 1;
+}
+
+.desc_input {
+    display: flex;
+    width: calc(100% - 4rem);
+    height: calc( 50% - 9rem - 2rem - .5rem );
+    outline: none;
+    background-color: var(--bg);
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: calc( var(--font-size) * 1 );
+    border: var(--border);
+    border-top: 0;
+    padding: 1rem 2rem;
+    resize: none;
+}
+
+.desc_input::placeholder {
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: calc( var(--font-size) * 1 );
+    opacity: 1;
+}
+
+.submit_wrap {
+    display: flex;
+    flex-direction: row;
+    height: 5rem;
+    width: calc(100%);
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: calc( var(--font-size) * 1 );
+    border-right: var(--border);
+}
+
+.submit_button {
+    background-color: var(--yellow);
+    color: #3E3E3E
+}
+
+.cancel_button {
+    background-color: var(--bg);
+    color: var(--font-color);
+}
+
+.submit_button, .cancel_button {
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 1rem 3rem;
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    font-size: calc( var(--font-size) * 1 );
+    outline: none;
+    border: none;
+}
+
+.submit_button:hover {
+    background-color: var(--bg);
+    color: var(--font-color);
+}
+
+.sell_item_wrap div * {
+    border-left: 0;
 }
