@@ -23,7 +23,6 @@
     font-weight: normal;
     color: var(--font-color);
     font-size: clamp( 5rem, 50vw, 6rem );
-    /* z-index: 1; */
 }
 
 .sell_item_input input {
@@ -31,5 +30,4 @@
     width: 100%;
     height: 100%;
     opacity: 0;
-    /* z-index: 2; */
 }

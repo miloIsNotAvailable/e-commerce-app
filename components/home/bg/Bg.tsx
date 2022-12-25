@@ -7,6 +7,13 @@ const Bg: FC = () => {
     const [ { height, width }, setSize ] = useState<{ width: number, height: number }>( { width: window.innerWidth, height: window.innerHeight } )
     const ref = useRef<HTMLCanvasElement | null>( null )
 
+    useEffect( () => {
+        setSize( { 
+            width: window.innerWidth, 
+            height: .78 * window.innerHeight - 4 * 18 
+            // height: window.innerHeight
+        } )
+    }, [] )
 
     useEffect( () => {
         
@@ -14,8 +21,9 @@ const Bg: FC = () => {
             setSize( { 
                 width: window.innerWidth, 
                 height: .78 * window.innerHeight - 4 * 18 
+                // height: window.innerHeight
             } )    
-        }
+        }    
     } )
 
     useEffect( () => {
@@ -27,7 +35,7 @@ const Bg: FC = () => {
             const { Application } = await import( "@splinetool/runtime" )
 
             const app = new Application( ref.current );
-            app.load('https://prod.spline.design/LKctIre2mSBZIefR/scene.splinecode');
+            app.load('https://prod.spline.design/75QCvQpuF7jUvShM/scene.splinecode');
         } )()
     }, [ ref.current ] )
 

@@ -5,7 +5,7 @@ import BgLoading from "../bg/BgLoading";
 import Title from "../title";
 import { styles } from "./HomeStyles";
 const Bg = lazy( () => new Promise(
-    resolve => setTimeout(resolve, 2000 )
+    resolve => setTimeout(resolve, 0 )
     ) 
     .then( () => import("../bg" ) )
 )
