@@ -3,12 +3,14 @@ import { NewItemMutationVariables, User } from "@graphql-types"
 import { createClient } from "@supabase/supabase-js";
 import { uuid } from 'uuidv4'
 import { decode } from 'base64-arraybuffer'
+import { prisma } from "../../prisma/client";
 
 const supabase = createClient( 
     "https://mqifkoalnglfauiiliet.supabase.co",
     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1xaWZrb2FsbmdsZmF1aWlsaWV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk4MzE1MDgsImV4cCI6MTk4NTQwNzUwOH0.s60VPkqpI4FW25QedxLU9y2kqDlCMgPj68QCZWwlERE"
 )
 
+// https://github.com/supabase/supabase/issues/7252#issuecomment-1162947501
 const prepareBase64DataUrl = ( base64: string ) =>
   base64
     .replace('data:image/jpeg;', 'data:image/jpeg;charset=utf-8;')
@@ -76,7 +78,7 @@ export const root: rootType = {
         
             const itemId = uuid()
 
-            const { data, error } = await supabase.storage
+            const { data: data_, error } = await supabase.storage
             .from( "images" )
             .upload( `public/${ itemId }.jpg`, 
             Buffer.from(prepareBase64DataUrl( args.img ), 'base64'), 
@@ -85,6 +87,24 @@ export const root: rootType = {
             } )
             
             if( error ) throw new Error( error.message )
+
+            const { data: img } = supabase.storage
+            .from( "images" )
+            .getPublicUrl( `public/${ itemId }.jpg` )
+
+            const data = await prisma.item.create( {
+                data: {
+                    ...args,
+                    img: img.publicUrl,
+                    author: { 
+                        connect: {
+                            id: user!.id
+                        }
+                    }
+                }
+            } )
+
+            console.log( data )
 
             return args        
         }

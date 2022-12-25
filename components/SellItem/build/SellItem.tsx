@@ -1,6 +1,7 @@
 import { useRedux } from "@hooks/useRedux";
 import { FC } from "react";
 import { itemDataState } from "../../../interfaces/reduxInterfaces";
+import { useNewItemMutation } from "../../../redux/api/fetchApi";
 import Block from "../../custom/Block/Block";
 import PageLayout from "../../custom/PageLayout";
 import DescInput from "../inputs/DescInput";
@@ -12,6 +13,9 @@ import { styles } from "./SellItemStyles";
 const SellItem: FC = () => {
 
     const [ { inputData } ] = useRedux<itemDataState>()
+    const [ , { error } ] = useNewItemMutation( {
+        fixedCacheKey: "created-item",
+    } )
 
     return (
         <PageLayout title={ "sell item" }>
@@ -22,7 +26,12 @@ const SellItem: FC = () => {
                     <DescInput/>
                     <Submit/>
                 </div>
-                <Block { ...inputData }/>
+                <nav className={ styles.block_preview }>
+                    <Block { ...inputData }/>
+                    <p className={ styles.block_error }>
+                        { error && "unexpected error occured, please try again" }
+                    </p>
+                </nav>
             </div>
         </PageLayout>
     )

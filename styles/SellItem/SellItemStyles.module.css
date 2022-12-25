@@ -126,3 +126,15 @@
 .sell_item_wrap div * {
     border-left: 0;
 }
+
+.block_preview {
+    display: grid;
+    place-items: center;
+}
+
+.block_error {
+    font-family: 'PP Neue Montreal';
+    font-weight: normal;
+    font-size: calc( var(--font-size) * 1 );
+    color: var(--red)
+}

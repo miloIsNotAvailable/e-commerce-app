@@ -47,7 +47,7 @@ type User @auth( requires: USER ) {
 type createItem {
   title: String!
   img: String!
-  desc: String!
+  desc: String
 }
 
 # The "Query" type is special: it lists all of the available queries that
@@ -70,6 +70,6 @@ type Mutation {
   newItem( 
     title: String!, 
     img: String!, 
-    desc: String! 
+    desc: String 
   ): createItem @auth
 }

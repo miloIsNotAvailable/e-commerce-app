@@ -6,7 +6,7 @@ import { itemDataState } from "../../../interfaces/reduxInterfaces";
 import { useNewItemMutation } from "../../../redux/api/fetchApi";
 import { styles } from "../build/SellItemStyles";
 
-const ITEM_QUERY = gql`mutation NewItem($title: String!, $img: String!, $desc: String!) {
+const ITEM_QUERY = gql`mutation NewItem($title: String!, $img: String!, $desc: String) {
     newItem(title: $title, img: $img, desc: $desc) {
       desc
       img
@@ -18,7 +18,9 @@ const Submit: FC = () => {
 
     const goBack = useGoBack()
     
-    const [ createItem, { data, isLoading, error } ] = useNewItemMutation()
+    const [ createItem, { data, isLoading, error } ] = useNewItemMutation( {
+        fixedCacheKey: "created-item",
+    } )
     const [ { inputData } ] = useRedux<itemDataState>()
 
     const handleCreateItem: () => void = () => {
