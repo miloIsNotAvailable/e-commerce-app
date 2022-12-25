@@ -4,7 +4,7 @@ import { defaultFieldResolver, GraphQLError, GraphQLSchema } from "graphql";
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { schema } from "../schema";
 import { root } from "../../resolvers/resolvers";
-// import {  } from '@apollo/server'
+import jwt from 'jsonwebtoken'
 
 type getUserFnType = () => string
 
@@ -40,15 +40,12 @@ authDirectiveTransformer: (schema: GraphQLSchema) =>
         const { requires } = authDirective;
         if (requires) {
             const { resolve = defaultFieldResolver } = fieldConfig;
-            fieldConfig.resolve = function (source, args, context, info) {
-    
-                const user = getUserFn();
-    
-                if( user != requires ) {
-                    throw new GraphQLError( "user not authorized" )
-                }
+            fieldConfig.resolve = async function (source, args, context, info) {
+                
+                const { user } = context
+                if( !user ) throw new Error( "user not authorized" )
 
-            return resolve(source, args, context, info);
+                return resolve(source, args, context, info);
             };
             return fieldConfig;
         }

@@ -1,4 +1,4 @@
-import { LoginQuery } from "@graphql-types"
+import { QueryRegisterArgs } from "@graphql-types"
 import { gql } from "graphql-request"
 import { MouseEvent } from "react"
 import { userDataState } from "../../interfaces/reduxInterfaces"
@@ -18,7 +18,7 @@ query Register($email: String!, $password: String!, $username: String!) {
 type useUserLoginType = <T = any>() => [
     (e: MouseEvent<T, globalThis.MouseEvent>) => void,
     {
-    data: LoginQuery | undefined;
+    data: QueryRegisterArgs | undefined;
     isLoading: boolean;
     error: any;
     }

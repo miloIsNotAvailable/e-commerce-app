@@ -20,5 +20,6 @@ let schema__ = makeExecutableSchema({
 // let schema_ = authDirectiveTransformer( schema__ )
 let schema_: any = loginDirectiveTransformer( schema__ )
 schema_ = registerDirectiveTransformer( schema_ )
+schema_ = authDirectiveTransformer( schema_ )
 
 export { schema_ }

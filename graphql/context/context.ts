@@ -38,9 +38,9 @@ export default async function context ({ req, res }: ExpressContextFunctionArgum
         }
 
         // check for access token 
-        const access_token_decoded = jwt.verify( access_token_cookie, process.env.access_TOKEN! )
+        const access_token_decoded = jwt.verify( access_token_cookie, process.env.ACCESS_TOKEN! )
         
-        return { token: access_token_cookie, req, res }
+        return { user: access_token_decoded, req, res }
     } catch( e ) {
         // console.log( e )
         
@@ -51,7 +51,7 @@ export default async function context ({ req, res }: ExpressContextFunctionArgum
         // if refresh token is invalid 
         // return token as empty string 
         if( !refresh_token_decoded ) {
-            return { token: "", req, res }
+            return { user: undefined, req, res }
         }
 
         console.log( refresh_token_decoded )
@@ -74,6 +74,6 @@ export default async function context ({ req, res }: ExpressContextFunctionArgum
             ]                         
         )
         // return token as encoded string
-        return { token: new_access_token, req, res }
+        return { user: refresh_token_decoded, req, res }
     }
 }

@@ -1,3 +1,4 @@
+import { useGoBack } from "@hooks/useGoBack";
 import { FC, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../navbar/build/Navbar";
@@ -10,11 +11,11 @@ interface PageLayoutProps {
 
 const PageLayout: FC<PageLayoutProps> = ( { title, children } ) => {
 
-    const navigate = useNavigate();
+    const goBack = useGoBack()
     const handleGoBack: ( e: MouseEvent<HTMLButtonElement> ) => void 
     = e => {
         e.preventDefault()
-        navigate( -1 )
+        goBack()
     }
 
     return (

@@ -44,6 +44,12 @@ type User @auth( requires: USER ) {
   username: String!
 }
 
+type createItem {
+  title: String!
+  img: String!
+  desc: String!
+}
+
 # The "Query" type is special: it lists all of the available queries that
 
 # clients can execute, along with the return type for each.
@@ -58,4 +64,12 @@ type Query {
     password: String!, 
     username: String!
   ): registerUser @register @login
+}
+
+type Mutation {
+  newItem( 
+    title: String!, 
+    img: String!, 
+    desc: String! 
+  ): createItem @auth
 }

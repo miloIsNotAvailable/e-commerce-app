@@ -1,10 +1,10 @@
 import {
   Book,
-  LoginQuery,
-  LoginQueryVariables,
   LoginUser,
-  RegisterQuery,
-  RegisterQueryVariables,
+  NewItemMutation,
+  NewItemMutationVariables,
+  QueryLoginArgs,
+  QueryRegisterArgs,
   RegisterUser,
   
 } from "@graphql-types";
@@ -61,7 +61,7 @@ export const fetchApi = createApi({
         variables: variables,
       }),
     }),
-    getUser: query<LoginQuery, queryType<LoginQueryVariables>>({
+    getUser: query<LoginUser, queryType<QueryLoginArgs>>({
       providesTags: [],
       query: ({ body, variables, headers = {} }) => ({
         url: `/graphiql`,
@@ -72,7 +72,17 @@ export const fetchApi = createApi({
         variables: variables,
       }),
     }),
-    createUser: mutation<RegisterQuery, queryType<RegisterQueryVariables>>({
+    createUser: mutation<RegisterUser, queryType<QueryRegisterArgs>>({
+      query: ({ body, variables, headers = {} }) => ({
+        url: `/graphiql`,
+        method: "POST",
+        credentials: "include",
+        headers: { ...requestHeaders, ...headers },
+        body: body,
+        variables: variables,
+      }),
+    }),
+    newItem: mutation<NewItemMutation, queryType<Partial<NewItemMutationVariables>>>({
       query: ({ body, variables, headers = {} }) => ({
         url: `/graphiql`,
         method: "POST",
@@ -89,5 +99,6 @@ export const {
     useGetHelloQuery, 
     useGetUserQuery, 
     useLazyGetUserQuery,
-    useCreateUserMutation
+    useCreateUserMutation,
+    useNewItemMutation
 } = fetchApi;

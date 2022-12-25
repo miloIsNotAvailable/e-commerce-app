@@ -119,6 +119,10 @@
     color: var(--font-color);
 }
 
+.submit_button:disabled {
+    opacity: 0.8;
+}
+
 .sell_item_wrap div * {
     border-left: 0;
 }

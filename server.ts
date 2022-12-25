@@ -100,7 +100,7 @@ async function createServer() {
     }
   })
     
-  const PORT = 5173 || process.env.PORT
+  const PORT = 6173 || process.env.PORT
   await new Promise<void>((resolve) => httpServer.listen({ port: PORT }, resolve));
   
   console.log(`🚀✨ Server ready at http://localhost:${PORT}`);
