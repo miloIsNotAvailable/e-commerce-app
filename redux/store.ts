@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { fetchApi } from './api/fetchApi'
 import userData from './auth/authSlice'
+import inputData from './inputs/itemInputSlice'
 
 export const preloadStore = ( preloadedState: any ) => configureStore({
   reducer: {
     [fetchApi.reducerPath]: fetchApi.reducer,
     userData,
+    inputData
   },
   preloadedState,
   middleware: getDefaultMiddleware => 

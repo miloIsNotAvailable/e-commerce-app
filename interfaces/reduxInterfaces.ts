@@ -10,6 +10,16 @@ export type userDataType = {
     }
 }
 
+export type itemInputType = {
+    title?: string
+    desc?: string
+    img?: string
+}
+
 export type userDataState = {
     userData: userDataType
+}
+
+export type itemDataState = {
+    inputData: itemInputType
 }

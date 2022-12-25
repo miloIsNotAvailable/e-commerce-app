@@ -12,6 +12,7 @@
 .img {
     display: flex;
     align-self: flex-end;
+    object-fit: contain;
     width: 100%;
     height: calc( 100% - 1rem );
     background-color: var(--scene-bg);
@@ -34,13 +35,13 @@
 
 .desc {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: calc(100% - 2rem);
     font-family: 'PP Neue Montreal';
     font-weight: bold;
     font-size: var(--font-size);
     color: var(--font-color);
-    padding: 1rem;
+    padding: .5rem 1rem;
     border-bottom: var(--border);
 }
 

@@ -106,7 +106,7 @@
     cursor: pointer;
     display: grid;
     place-items: center;
-    padding: 1rem 3rem;
+    padding: 1rem 5rem;
     font-family: 'PP Neue Montreal';
     font-weight: bold;
     font-size: calc( var(--font-size) * 1 );

@@ -1,4 +1,6 @@
+import { useRedux } from "@hooks/useRedux";
 import { FC } from "react";
+import { itemDataState } from "../../../interfaces/reduxInterfaces";
 import Block from "../../custom/Block/Block";
 import PageLayout from "../../custom/PageLayout";
 import DescInput from "../inputs/DescInput";
@@ -9,6 +11,8 @@ import { styles } from "./SellItemStyles";
 
 const SellItem: FC = () => {
 
+    const [ { inputData } ] = useRedux<itemDataState>()
+
     return (
         <PageLayout title={ "sell item" }>
             <div className={ styles.sell_item_wrap }>
@@ -18,7 +22,7 @@ const SellItem: FC = () => {
                     <DescInput/>
                     <Submit/>
                 </div>
-                <Block/>
+                <Block { ...inputData }/>
             </div>
         </PageLayout>
     )
