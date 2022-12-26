@@ -33,9 +33,10 @@
     opacity: 0;
 }
 
-.title_input {
+.title_input_wrap {
     display: flex;
-    width: calc(100% - 4rem);
+    flex-direction: row;
+    width: calc(100%);
     height: 4rem;
     outline: none;
     background-color: var(--bg);
@@ -45,7 +46,89 @@
     font-size: calc( var(--font-size) * 1.5 );
     border: var(--border);
     border-top: 0;
+    /* padding: 0 2rem; */
+}
+
+.title_input {
+    display: flex;
+    width: calc( 50% - 2rem );
+    height: 4rem;
+    outline: none;
+    background-color: var(--bg);
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    color: var(--font-color);
+    font-size: calc( var(--font-size) * 1.5 );
+    border: var(--border);
+    border-top: 0;
+    padding: 0 1rem;
+}
+
+.choose_category_wrap {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: calc( 50% - 2rem );
+    padding: 0 1rem;
+    /* margin: 0 auto; */
+}
+
+.arrow {
+    width: fit-content;
+    height: fit-content;
+    transform-origin: center;
+    transition: all 100ms ease;
+}
+
+
+.choose_category {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc( (100% - 4rem) * .5 );
     padding: 0 2rem;
+}
+
+.choose_category_items {
+    position: absolute;
+    top: 100%;
+    left: -2px;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: calc( 100% - 2rem );
+    max-height: 0;
+    overflow-y: hidden;
+    padding: 0 1rem;
+    opacity: 0;
+    border: var(--border);
+    list-style-type: none;
+    text-align: left;
+    text-transform: lowercase;
+    scrollbar-width: none;
+    transition: all 100ms ease;
+}
+
+.choose_category_wrap:hover .arrow {
+    transform: rotate( 180deg );
+}
+
+.choose_category_wrap:active .arrow,
+.choose_category_wrap:focus .arrow {
+    transform: rotate( 180deg );
+}
+
+.choose_category_wrap:active .choose_category_items,
+.choose_category_wrap:focus .choose_category_items {
+    opacity: 1;
+    max-height: calc( 9.5rem );
+    padding: calc( 1rem + 1px ) 1rem;
+}
+
+.choose_category_items li {
+    cursor: pointer;
 }
 
 .title_input::placeholder {
@@ -123,7 +206,7 @@
     opacity: 0.8;
 }
 
-.sell_item_wrap div * {
+.sell_item_wrap div :not( ul ) {
     border-left: 0;
 }
 

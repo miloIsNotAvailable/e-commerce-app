@@ -1,3 +1,4 @@
+import { ItemCategories } from "@graphql-types"
 
 export type userDataType = {
     email?: string
@@ -14,6 +15,7 @@ export type itemInputType = {
     title?: string
     desc?: string
     img?: string
+    category?: ItemCategories
 }
 
 export type userDataState = {

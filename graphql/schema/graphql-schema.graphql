@@ -20,6 +20,14 @@ enum Role {
   UNKNOWN
 }
 
+enum ItemCategories {
+  SHELVES
+  ART
+  BEDS
+  CHAIRS
+  TABLES
+}
+
 type Book {
   title: String
   author: String
@@ -48,6 +56,7 @@ type createItem {
   title: String!
   img: String!
   desc: String
+  category: ItemCategories!
 }
 
 # The "Query" type is special: it lists all of the available queries that
@@ -71,5 +80,6 @@ type Mutation {
     title: String!, 
     img: String!, 
     desc: String 
+    category: ItemCategories!
   ): createItem @auth
 }

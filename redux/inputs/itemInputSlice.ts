@@ -25,13 +25,20 @@ const itemInputSlice = createSlice( {
         ) => {
             state.img = action.payload.img
         },
+        getItemCategory: (
+            state: itemInputType,
+            action: PayloadAction<itemInputType>
+        ) => {
+            state.category = action.payload.category
+        },
     }
 } )
 
 export const { 
     getItemDesc,
     getItemImg,
-    getItemTitle
+    getItemTitle,
+    getItemCategory
 } = itemInputSlice.actions
 
 export default itemInputSlice.reducer

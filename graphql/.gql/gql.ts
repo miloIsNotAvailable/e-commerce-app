@@ -13,13 +13,13 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel-plugin for production.
  */
 const documents = {
-    "mutation NewItem($title: String!, $img: String!, $desc: String) {\n    newItem(title: $title, img: $img, desc: $desc) {\n      desc\n      img\n      title\n    }\n  }": types.NewItemDocument,
+    "mutation NewItem($title: String!, $img: String!, $desc: String, $category: ItemCategories!) {\n    newItem(title: $title, img: $img, desc: $desc, category: $category) {\n      category\n      desc\n      img\n      title\n    }\n  }": types.NewItemDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "mutation NewItem($title: String!, $img: String!, $desc: String) {\n    newItem(title: $title, img: $img, desc: $desc) {\n      desc\n      img\n      title\n    }\n  }"): (typeof documents)["mutation NewItem($title: String!, $img: String!, $desc: String) {\n    newItem(title: $title, img: $img, desc: $desc) {\n      desc\n      img\n      title\n    }\n  }"];
+export function graphql(source: "mutation NewItem($title: String!, $img: String!, $desc: String, $category: ItemCategories!) {\n    newItem(title: $title, img: $img, desc: $desc, category: $category) {\n      category\n      desc\n      img\n      title\n    }\n  }"): (typeof documents)["mutation NewItem($title: String!, $img: String!, $desc: String, $category: ItemCategories!) {\n    newItem(title: $title, img: $img, desc: $desc, category: $category) {\n      category\n      desc\n      img\n      title\n    }\n  }"];
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.

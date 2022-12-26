@@ -6,8 +6,9 @@ import { itemDataState } from "../../../interfaces/reduxInterfaces";
 import { useNewItemMutation } from "../../../redux/api/fetchApi";
 import { styles } from "../build/SellItemStyles";
 
-const ITEM_QUERY = gql`mutation NewItem($title: String!, $img: String!, $desc: String) {
-    newItem(title: $title, img: $img, desc: $desc) {
+const ITEM_QUERY = gql`mutation NewItem($title: String!, $img: String!, $desc: String, $category: ItemCategories!) {
+    newItem(title: $title, img: $img, desc: $desc, category: $category) {
+      category
       desc
       img
       title
