@@ -1,3 +1,4 @@
+import { CreateItem } from "@graphql-types";
 import { FC, lazy, Suspense } from "react";
 import Button from "../Button";
 import Fallback from "../LazyLoad/Fallback";
@@ -10,7 +11,7 @@ interface BlockProps {
     img?: string
 }
 
-const Block: FC<BlockProps> = ( { desc, img, title } ) => {
+const Block: FC<Partial<CreateItem>> = ( { desc, img, title } ) => {
 
     return (
         <div className={ styles.block_wrap }>

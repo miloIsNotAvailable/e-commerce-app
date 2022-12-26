@@ -1,5 +1,5 @@
 import { rootType } from "../../interfaces/graphqlInterfaces/schemaInterfaces";
-import { NewItemMutationVariables, User } from "@graphql-types"
+import { ItemCategories, NewItemMutationVariables, User } from "@graphql-types"
 import { createClient } from "@supabase/supabase-js";
 import { uuid } from 'uuidv4'
 import { decode } from 'base64-arraybuffer'
@@ -72,6 +72,19 @@ export const root: rootType = {
                 console.log( e )
             }
         },
+
+        async getItems( _, { category }: { category: ItemCategories } ) {
+
+            // console.log( category )
+
+            const data = await prisma.item.findMany( {
+                where: { category }
+            } )
+
+            // console.log( data )
+
+            return data
+        }
     },
     Mutation: {
         async newItem( _, args: NewItemMutationVariables, { req, res, user } ) {

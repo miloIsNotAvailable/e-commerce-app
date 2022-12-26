@@ -73,6 +73,7 @@ type Query {
     password: String!, 
     username: String!
   ): registerUser @register @login
+  getItems( category: ItemCategories! ): [createItem]
 }
 
 type Mutation {

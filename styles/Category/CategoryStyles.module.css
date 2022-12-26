@@ -1,0 +1,17 @@
+
+.category_wrap {
+    display: grid;
+    /* margin-bottom: auto; */
+    margin-inline: auto;
+    align-self: flex-start;
+    grid-template-columns: repeat( 3, calc( ( 100vw - 4rem - 3 * .5rem ) / 3 + 4px ) );
+    grid-auto-rows: auto;
+    width: calc(100vw - 4rem);
+    /* height: calc(100vh); */
+    gap: .3rem;
+    padding: 2rem 0;
+    max-height: calc(100vh - 4rem - 4rem - 4rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}

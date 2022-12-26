@@ -1,9 +1,10 @@
 .page_wrap {
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 100vw;
     grid-template-rows: 4rem 4rem auto;
     width: 100vw;
     height: 100vh;
+    /* overflow: hidden; */
 }
 
 .page_title {
