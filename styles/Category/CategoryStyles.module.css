@@ -15,3 +15,8 @@
     overflow-x: hidden;
     scrollbar-width: none;
 }
+
+.page_loading {
+    display: grid;
+    place-items: center;
+}

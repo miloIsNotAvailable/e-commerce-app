@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { items } from "../../../constants/items";
 import { styles } from "../build/NavbarStyles";
 
@@ -10,7 +11,7 @@ const Categories: FC = () => {
             <ul className={ styles.categories_menu }>
                 { items.map( items => (
                     <li key={ items }>
-                        { items }
+                        <Link to={ "/" + items.toLowerCase() }>{ items }</Link>
                     </li>
                 ) ) }
             </ul>

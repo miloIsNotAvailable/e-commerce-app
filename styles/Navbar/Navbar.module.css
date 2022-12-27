@@ -54,6 +54,11 @@
     transition: all 200ms ease;
 }
 
+.categories_menu * {
+    text-decoration: none;
+    color: var(--font-color)
+}
+
 .categories:focus .categories_menu,  
 .categories:active .categories_menu {
     max-height: calc( 2rem + 3 * var(--font-color) );
@@ -66,7 +71,7 @@
     cursor: pointer
 }
 
-.categories_menu li:hover {
+.categories_menu li > *:hover {
     color: var(--red);
 }
 
