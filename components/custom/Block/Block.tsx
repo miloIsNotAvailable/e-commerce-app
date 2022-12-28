@@ -1,5 +1,6 @@
 import { CreateItem } from "@graphql-types";
 import { FC, lazy, Suspense } from "react";
+import { Link } from "react-router-dom";
 import Button from "../Button";
 import Fallback from "../LazyLoad/Fallback";
 import { styles } from "./BlockStyles";
@@ -11,7 +12,14 @@ interface BlockProps {
     img?: string
 }
 
-const Block: FC<Partial<CreateItem>> = ( { desc, img, title } ) => {
+const Block: FC<Partial<CreateItem & { disabled: boolean }>> = ( { 
+    desc, 
+    img, 
+    title,
+    id, 
+    category,
+    disabled=false 
+} ) => {
 
     return (
         <div className={ styles.block_wrap }>
@@ -37,22 +45,26 @@ const Block: FC<Partial<CreateItem>> = ( { desc, img, title } ) => {
             </p>
             <nav className={ styles.button_wrap }>
                 <Button
-                    disabled 
+                    disabled={ disabled }
                     style={ {
                         padding: ".5rem 3rem",
                         border: "2px solid var(--bg)"
                     } }
                 >
-                    add to cart
+                    <Link to={ "cart" }>
+                        add to cart
+                    </Link>
                 </Button>
                 <Button 
-                    disabled
+                    disabled={ disabled }
                     style={ {
                         padding: ".5rem 3rem",
                         border: "2px solid var(--bg)"
                     } }
                 >
-                    buy now
+                    <Link to={ `/${ category?.toLowerCase() }/${ id }` }>
+                        buy now
+                    </Link>                
                 </Button>
             </nav>
         </div>

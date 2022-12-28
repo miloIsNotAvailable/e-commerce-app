@@ -10,7 +10,7 @@ export const useAvgBgColor = () => {
 
     return ( imgEl: HTMLImageElement | null ): RGB => {
         
-        if( !imgEl ) return { r: 255, g: 144, b: 173 }
+        if( !imgEl || !imgEl.src ) return { r: 255, g: 144, b: 173 }
 
         var blockSize = 5, // only visit every 5 pixels
             defaultRGB = { r: 255, g: 144, b: 173 }, // for non-supporting envs

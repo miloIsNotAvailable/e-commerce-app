@@ -41,9 +41,11 @@ const Category: FC = () => {
                     ( { category, img, title, desc, id }: Partial<CreateItem> ) => (
                         <Block 
                             key={ id }
+                            id={ id }
                             desc={ desc }
                             img={ img }
                             title={ title }
+                            category={ category }
                         />
                     )
                 ) }

@@ -11,7 +11,9 @@ const AppRoutes: FC = () => {
         const path = route
           .replace(/\/pages|index|\.tsx$/g, '')
           .replace(/\[\.{3}.+\]/, '*')
-          .replace(/\[(.+)\]/, ':$1')
+          .replace(/\[/g, ':')
+          .replace( /\]/g, "" )
+        //   .replace(/\[(.+)\]/, ':$1')
       
         return { path, component: __routes__[route].default }
       })

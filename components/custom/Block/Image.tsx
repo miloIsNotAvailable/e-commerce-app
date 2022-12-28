@@ -26,7 +26,8 @@ const Image: FC<ImageProps> = ( { src } ) => {
         
         if( !ctx ) return
         ctx.drawImage(imgRef.current, 0, 0);
-    
+        ctx.fillStyle = "rgb( 255, 144, 173 )"
+
         var dataURL = canvas.toDataURL("image/png");
 
         const img_ = document.createElement( "img" )

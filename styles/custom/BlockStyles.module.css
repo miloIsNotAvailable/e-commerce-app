@@ -52,3 +52,8 @@
     justify-content: center;
     gap: 2rem;
 }
+
+.button_wrap * {
+    text-decoration: none;
+    color: #3E3E3E
+}
