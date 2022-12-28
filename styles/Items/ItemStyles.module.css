@@ -141,5 +141,25 @@
 }
 
 .rate_product_wrap {
+    justify-content: center;
     gap: .2rem
+}
+
+.reviews_wrap {
+    display: grid;
+    grid-template-rows: 4rem auto;
+    height: calc( 100vh - 27rem );  
+}
+
+.reviews_header {
+    display: flex;
+    align-items: flex-end;
+    width: calc( 100% - 4rem );
+    padding: 1rem 2rem;
+    font-family: 'PP Neue Montreal';
+    font-weight: bold;
+    font-size: calc( var(--font-size) );
+    color: var(--font-color);
+    text-transform: uppercase;
+    border-bottom: var(--border); 
 }

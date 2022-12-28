@@ -5,6 +5,7 @@ import Footer from "../footer/Footer";
 import HeaderDesc from "../header/HeaderDesc";
 import HeaderImage from "../header/HeaderImage";
 import Rating from "../rating/Rating";
+import Reviews from "../reviews/Reviews";
 import { styles } from "./ItemStyles";
 
 const Item: FC = () => {
@@ -18,6 +19,7 @@ const Item: FC = () => {
                 <HeaderImage/>
                 <HeaderDesc/>
                 <Rating/>
+                <Reviews/>
             </div>
             <Footer/>
         </div>
