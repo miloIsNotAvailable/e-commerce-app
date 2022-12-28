@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { styles } from "../build/ItemStyles";
+import ReviewsInput from "./ReviewsInput";
 
 const Reviews: FC = () => {
 
@@ -9,8 +10,9 @@ const Reviews: FC = () => {
                 reviews
             </div>
             <div>
-                
+
             </div>
+            <ReviewsInput/>
         </div>
     )
 }

@@ -10,7 +10,7 @@ const Rating: FC = () => {
                 <p>average rating</p>
                 <p className={ styles.stars }>
                     5.5
-                    <p>★</p>
+                    <span>★</span>
                 </p>
             </div>
             <RateItem/>
