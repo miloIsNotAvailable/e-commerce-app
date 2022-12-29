@@ -18,10 +18,18 @@ export type itemInputType = {
     category?: ItemCategories
 }
 
+export type openReviewInputType = {
+    open: boolean
+}
+
 export type userDataState = {
     userData: userDataType
 }
 
 export type itemDataState = {
     inputData: itemInputType
+}
+
+export type reviewInputState = {
+    reviewInput: openReviewInputType
 }
