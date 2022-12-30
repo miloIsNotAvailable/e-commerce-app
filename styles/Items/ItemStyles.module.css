@@ -190,6 +190,7 @@
 } 
 
 .reviews_input_wrap button {
+    cursor: pointer;
     display: grid;
     place-items: center;
     width: 100%;
@@ -198,6 +199,10 @@
     background-color: var(--yellow);
     /* padding: 0 4rem; */
     text-transform: uppercase;
+}
+
+.reviews_input_wrap button:hover {
+    opacity: 0.8;
 }
 
 .reviews_input_wrap textarea {
