@@ -60,6 +60,14 @@ type createItem {
   category: ItemCategories!
 }
 
+type review {
+  id: String
+  item_id: String!
+  text: String!
+  author: String
+  created_at: String
+}
+
 # The "Query" type is special: it lists all of the available queries that
 
 # clients can execute, along with the return type for each.
@@ -84,4 +92,12 @@ type Mutation {
     desc: String 
     category: ItemCategories!
   ): createItem @auth
+
+  createReview(
+    id: String
+    text: String!
+    author: String
+    created_at: String
+    item_id: String!
+  ): review @auth
 }

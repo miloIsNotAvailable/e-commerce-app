@@ -1,5 +1,5 @@
 import { rootType } from "../../interfaces/graphqlInterfaces/schemaInterfaces";
-import { ItemCategories, NewItemMutationVariables, User } from "@graphql-types"
+import { CreateReviewMutationVariables, ItemCategories, NewItemMutationVariables, User } from "@graphql-types"
 import { createClient } from "@supabase/supabase-js";
 import { uuid } from 'uuidv4'
 import { decode } from 'base64-arraybuffer'
@@ -120,6 +120,12 @@ export const root: rootType = {
             console.log( data )
 
             return args        
+        },
+        async createReview( _, args: CreateReviewMutationVariables, { user } ) {
+
+            console.log( { ...args, ...user } )
+
+            return args
         }
     }
 }

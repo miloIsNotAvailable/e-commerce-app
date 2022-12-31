@@ -1,5 +1,7 @@
 import {
   Book,
+  CreateReviewMutation,
+  CreateReviewMutationVariables,
   GetItemsQuery,
   GetItemsQueryVariables,
   LoginUser,
@@ -94,6 +96,16 @@ export const fetchApi = createApi({
         variables: variables,
       }),
     }),
+    createReview: mutation<CreateReviewMutation, queryType<CreateReviewMutationVariables>>({
+      query: ({ body, variables, headers = {} }) => ({
+        url: `/graphiql`,
+        method: "POST",
+        credentials: "include",
+        headers: { ...requestHeaders, ...headers },
+        body: body,
+        variables: variables,
+      }),
+    }),
     getItems: query<GetItemsQuery, queryType<GetItemsQueryVariables>>({
       query: ({ body, variables, headers = {} }) => ({
         url: `/graphiql`,
@@ -113,5 +125,6 @@ export const {
     useLazyGetUserQuery,
     useCreateUserMutation,
     useNewItemMutation,
-    useGetItemsQuery
+    useGetItemsQuery,
+    useCreateReviewMutation
 } = fetchApi;
