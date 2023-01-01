@@ -121,11 +121,23 @@ export const root: rootType = {
 
             return args        
         },
-        async createReview( _, args: CreateReviewMutationVariables, { user } ) {
+        async createReview( _, { text, item_id }, { user } ) {
 
-            console.log( { ...args, ...user } )
+            // console.log( args )
 
-            return args
+            const data = await prisma.review.create( {
+                data: {
+                    text,
+                    author: user!.id,
+                    item: {
+                        connect: {
+                            id: item_id
+                        }
+                    }
+                },
+            } )
+
+            return data
         }
     }
 }

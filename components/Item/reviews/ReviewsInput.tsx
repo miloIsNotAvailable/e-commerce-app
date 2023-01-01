@@ -39,9 +39,11 @@ const ReviewsInput: FC = () => {
     const inputRef = useRef<HTMLTextAreaElement | null>( null )
 
     const handleCreateReview: 
-    ( e: MouseEvent<HTMLFormElement> ) => Promise<void> = async e => {
+    ( e: MouseEvent<HTMLButtonElement> ) => Promise<void> = async e => {
 
         e.preventDefault()
+
+        console.log( id )
 
         createReview( {
             body: REVIEW_QUERY,
@@ -57,16 +59,18 @@ const ReviewsInput: FC = () => {
     )
 
     return (
-        <form 
-            onSubmit={ handleCreateReview }
-            className={ styles.reviews_input_wrap }
-        >
+        <form className={ styles.reviews_input_wrap }>
             <textarea
                 ref={ inputRef } 
                 className={ styles.input }
                 placeholder={ "leave a review" }
             />
-            <button>send review</button>
+            <button
+                onClick={ handleCreateReview }
+
+            >
+                { isLoading ?  "sending...": "send review" }
+            </button>
         </form>
     )
 }

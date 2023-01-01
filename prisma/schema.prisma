@@ -26,4 +26,14 @@ model Item {
   category   String
   created_at DateTime? @default(now()) @db.Timestamptz(6)
   author     Users     @relation( fields: [ author_id ], references: [ id ] )
+  reviews    Review[]
+}
+
+model Review {
+  id         String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  text       String    
+  author     String
+  created_at DateTime? @default(now()) @db.Timestamptz(6)
+  item_id    String    @db.Uuid
+  item       Item      @relation( fields: [ item_id ], references: [ id ] )
 }
