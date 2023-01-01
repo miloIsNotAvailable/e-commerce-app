@@ -2,6 +2,8 @@ import {
   Book,
   CreateReviewMutation,
   CreateReviewMutationVariables,
+  GetItemQuery,
+  GetItemQueryVariables,
   GetItemsQuery,
   GetItemsQueryVariables,
   LoginUser,
@@ -116,6 +118,16 @@ export const fetchApi = createApi({
         variables: variables,
       }),
     }),
+    getItem: query<GetItemQuery, queryType<GetItemQueryVariables>>({
+      query: ({ body, variables, headers = {} }) => ({
+        url: `/graphiql`,
+        method: "POST",
+        credentials: "include",
+        headers: { ...requestHeaders, ...headers },
+        body: body,
+        variables: variables,
+      }),
+    }),
   }),
 });
 
@@ -126,5 +138,6 @@ export const {
     useCreateUserMutation,
     useNewItemMutation,
     useGetItemsQuery,
-    useCreateReviewMutation
+    useCreateReviewMutation,
+    useGetItemQuery
 } = fetchApi;

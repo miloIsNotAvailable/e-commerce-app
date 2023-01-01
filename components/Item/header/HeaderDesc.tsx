@@ -1,15 +1,18 @@
+import { useItemContext } from "@contexts/ItemContext";
 import { FC } from "react";
 import { styles } from "../build/ItemStyles";
 
 const HeaderDesc: FC = () => {
 
+    const { getItem, isLoading } = useItemContext()
+
     return (
         <div className={ styles.item_header_desc_wrap }>
             <p className={ styles.item_header_desc_title }>
-                lorem ipsum
+                { isLoading ? "loading" : getItem?.title }
             </p>
             <p className={ styles.item_header_desc_desc }>
-            In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.
+            { isLoading ? "loading" : getItem?.desc }
             </p>
         </div>
     )

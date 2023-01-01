@@ -58,6 +58,7 @@ type createItem {
   img: String!
   desc: String
   category: ItemCategories!
+  reviews: [review]
 }
 
 type review {
@@ -83,6 +84,7 @@ type Query {
     username: String!
   ): registerUser @register @login
   getItems( category: ItemCategories! ): [createItem]
+  getItem( id: String! ): createItem
 }
 
 type Mutation {

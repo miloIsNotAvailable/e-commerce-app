@@ -84,6 +84,21 @@ export const root: rootType = {
             // console.log( data )
 
             return data
+        },
+        async getItem( _, { id } ) {
+
+            const [ data ] = await prisma.item.findMany( {
+                where: { id: id },
+                include: {
+                    reviews: {
+                        where: { 
+                            item_id: id
+                        }
+                    }
+                }
+            } )
+
+            return data
         }
     },
     Mutation: {
