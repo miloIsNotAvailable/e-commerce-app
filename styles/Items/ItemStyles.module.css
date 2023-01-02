@@ -17,13 +17,13 @@
 }
 
 .item_header_img {
-    display: grid;
+    display: flex;
     place-self: center;
     width: 100%;
     height: calc( 100% - 2rem );
     object-fit: contain;
     background-color: var(--scene-bg);
-    outline: none;
+    /* outline: none; */
     border-top: var(--border);
     border-bottom: var(--border);
 }
