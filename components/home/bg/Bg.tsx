@@ -29,14 +29,16 @@ const Bg: FC = () => {
     useEffect( () => {
         if( !ref.current ) return
         
-        ( async() =>{
+        window.requestIdleCallback( async() => {
+
             if( !ref.current ) return
 
             const { Application } = await import( "@splinetool/runtime" )
 
             const app = new Application( ref.current );
             app.load('https://prod.spline.design/75QCvQpuF7jUvShM/scene.splinecode');
-        } )()
+        } )
+
     }, [ ref.current ] )
 
     return (
