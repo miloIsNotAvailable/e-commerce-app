@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "query GetItems($category: ItemCategories!) {\n    getItems(category: $category) {\n      id\n      category\n      desc\n      img\n      title\n    }\n  }": types.GetItemsDocument,
     "query GetItem($getItemId: String!) {\n    getItem(id: $getItemId) {\n    category\n    desc\n    id\n    title\n    img\n      reviews {\n        author\n        created_at\n        item_id\n        id\n        text\n      }\n    }\n  }": types.GetItemDocument,
+    "query GetReviews($itemId: String!) {\n    getReviews(item_id: $itemId) {\n      author\n      id\n      text\n    }\n  }": types.GetReviewsDocument,
     "mutation CreateReview(\n    $text: String!\n    $createReviewId: String\n    $author: String\n    $createdAt: String\n    $itemId: String!\n  ) {\n    createReview(\n      text: $text\n      id: $createReviewId\n      author: $author\n      created_at: $createdAt\n      item_id: $itemId\n    ) {\n      author\n      created_at\n      id\n      text\n      item_id\n    }\n  }\n  ": types.CreateReviewDocument,
     "mutation NewItem($title: String!, $img: String!, $desc: String, $category: ItemCategories!) {\n    newItem(title: $title, img: $img, desc: $desc, category: $category) {\n      category\n      desc\n      img\n      title\n    }\n  }": types.NewItemDocument,
 };
@@ -27,6 +28,10 @@ export function graphql(source: "query GetItems($category: ItemCategories!) {\n 
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query GetItem($getItemId: String!) {\n    getItem(id: $getItemId) {\n    category\n    desc\n    id\n    title\n    img\n      reviews {\n        author\n        created_at\n        item_id\n        id\n        text\n      }\n    }\n  }"): (typeof documents)["query GetItem($getItemId: String!) {\n    getItem(id: $getItemId) {\n    category\n    desc\n    id\n    title\n    img\n      reviews {\n        author\n        created_at\n        item_id\n        id\n        text\n      }\n    }\n  }"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetReviews($itemId: String!) {\n    getReviews(item_id: $itemId) {\n      author\n      id\n      text\n    }\n  }"): (typeof documents)["query GetReviews($itemId: String!) {\n    getReviews(item_id: $itemId) {\n      author\n      id\n      text\n    }\n  }"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

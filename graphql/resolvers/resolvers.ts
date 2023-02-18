@@ -25,23 +25,6 @@ export const root: rootType = {
                 console.log( e ) 
             }
         },
-        
-        books: ( _, args: any, { req } ) => {
-        
-            console.log( req.headers.authorization )
-
-            return [
-                {
-                title: "The Awakening",
-                author: "Kate Chopin",
-                },
-
-                {
-                title: "City of Glass",
-                author: "Paul Auster",
-                },
-            ];
-        },
 
         user( _, args, { req } ): User {
 
@@ -96,6 +79,16 @@ export const root: rootType = {
                         }
                     }
                 }
+            } )
+
+            return data
+        },
+        async getReviews( _, { item_id } ) {
+
+            if( !item_id ) return;
+
+            const data = await prisma.review.findMany( {
+                where: { item_id }
             } )
 
             return data

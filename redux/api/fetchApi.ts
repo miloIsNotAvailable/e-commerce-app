@@ -6,9 +6,12 @@ import {
   GetItemQueryVariables,
   GetItemsQuery,
   GetItemsQueryVariables,
+  GetReviewsQuery,
+  GetReviewsQueryVariables,
   LoginUser,
   NewItemMutation,
   NewItemMutationVariables,
+  QueryGetReviewsArgs,
   QueryLoginArgs,
   QueryRegisterArgs,
   RegisterUser,
@@ -51,7 +54,7 @@ function areWeTestingWithJest() {
 
 export const fetchApi = createApi({
   reducerPath: "api",
-  tagTypes: [],
+  tagTypes: [ "review" ],
   baseQuery: graphqlBaseQuery({
     baseUrl: areWeTestingWithJest(),
   }),
@@ -99,6 +102,7 @@ export const fetchApi = createApi({
       }),
     }),
     createReview: mutation<CreateReviewMutation, queryType<CreateReviewMutationVariables>>({
+      invalidatesTags: [ "review" ],
       query: ({ body, variables, headers = {} }) => ({
         url: `/graphiql`,
         method: "POST",
@@ -128,6 +132,17 @@ export const fetchApi = createApi({
         variables: variables,
       }),
     }),
+    getReviews: query<GetReviewsQuery, queryType<GetReviewsQueryVariables>>({
+      providesTags: [ "review" ],
+      query: ({ body, variables, headers = {} }) => ({
+        url: `/graphiql`,
+        method: "POST",
+        credentials: "include",
+        headers: { ...requestHeaders, ...headers },
+        body: body,
+        variables: variables,
+      }),
+    }),
   }),
 });
 
@@ -139,5 +154,7 @@ export const {
     useNewItemMutation,
     useGetItemsQuery,
     useCreateReviewMutation,
-    useGetItemQuery
+    useGetItemQuery,
+    useGetReviewsQuery,
+    useLazyGetReviewsQuery
 } = fetchApi;

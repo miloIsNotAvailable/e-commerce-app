@@ -36,7 +36,7 @@ const HeaderImage: FC = () => {
         img_.height = imgRef.current.height 
 
         setColor(getCol( img_ ) )
-    } )    
+    }, [] )    
     
     return (
         <img

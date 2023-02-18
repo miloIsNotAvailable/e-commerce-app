@@ -85,6 +85,7 @@ type Query {
   ): registerUser @register @login
   getItems( category: ItemCategories! ): [createItem]
   getItem( id: String! ): createItem
+  getReviews( item_id: String! ): [review]! @auth
 }
 
 type Mutation {
