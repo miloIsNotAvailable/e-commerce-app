@@ -17,7 +17,7 @@ import {
   RegisterUser,
   
 } from "@graphql-types";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { GraphQLClient, request } from "graphql-request";
 
 const requestHeaders: HeadersInit = {

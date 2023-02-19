@@ -37,10 +37,10 @@ const Reviews: FC = () => {
             <div className={ styles.reviews_header }>
                 reviews
             </div>
-            <div>
+            <div className={ styles.review_wrap } >
                 { isSuccess && data?.getReviews && 
                 data!.getReviews!.map( ( { text } ) => (
-                    <div>
+                    <div className={ styles.review }>
                         { text }
                     </div>
                 ) ) }
