@@ -12,10 +12,8 @@ const Image: FC<ImageProps> = ( { src } ) => {
     const getCol = useAvgBgColor( )
     const [ color, setColor ] = useState<RGB>( { r: 255, g: 144, b: 173 } )
     
-    console.log( imgRef.current?.complete )
-
     useEffect( () => {
-        if( !imgRef.current || !imgRef.current.complete ) return
+        if( !imgRef.current ) return
 
         var canvas = document.createElement("canvas");
     
@@ -38,7 +36,7 @@ const Image: FC<ImageProps> = ( { src } ) => {
         img_.height = imgRef.current.height 
 
         setColor(getCol( img_ ) )
-    }, [ imgRef.current?.complete ] )
+    }, [ imgRef.current, src ] )
 
     return <img 
         className={ styles.img }
