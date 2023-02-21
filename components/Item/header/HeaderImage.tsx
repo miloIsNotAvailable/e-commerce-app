@@ -10,10 +10,8 @@ const HeaderImage: FC = () => {
     const getCol = useAvgBgColor()
     const [ color, setColor ] = useState<RGB>( { r: 255, g: 144, b: 173 } )
     
-    console.log( imgRef.current?.complete )
-
     useEffect( () => {
-        if( !imgRef.current || !imgRef.current.complete ) return
+        if( !imgRef.current || isLoading ) return
 
         var canvas = document.createElement("canvas");
     
@@ -36,7 +34,7 @@ const HeaderImage: FC = () => {
         img_.height = imgRef.current.height 
 
         setColor(getCol( img_ ) )
-    }, [] )    
+    }, [ imgRef, isLoading ] )    
     
     return (
         <img
