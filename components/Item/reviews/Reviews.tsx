@@ -1,5 +1,6 @@
 import { useItemContext } from "@contexts/ItemContext";
 import { GetReviewsQuery } from "@graphql-types";
+import { useIsInView } from "@hooks/useIsInView";
 import { gql } from "graphql-request";
 import { FC, useEffect, useRef, useState } from "react";
 import { useGetReviewsQuery, useLazyGetReviewsQuery } from "../../../redux/api/fetchApi";
@@ -22,24 +23,10 @@ const Reviews: FC = () => {
     const [getReviews, { data, isLoading, error, isSuccess }] = useLazyGetReviewsQuery()
     
     const reviewsRef = useRef<HTMLDivElement | null>( null )
-    const [ isInView, setIsInView ] = useState<boolean>( false )
+    const isInView = useIsInView<HTMLDivElement | null>( reviewsRef )
 
     useEffect( () => {
-
-        const target = document.getElementById( "reviews" );
-        if( !target ) return 
-
-        const observer = new IntersectionObserver( ( entries ) => {
-            const [ entry ] = entries
-            setIsInView( entry.isIntersecting )
-        }, {} )
-
-        observer.observe( target )
-    } )
-
-
-    useEffect( () => {
-        if( itemDataLoading || itemLoadingError || !isInView ) return;
+        if( itemDataLoading || itemLoadingError || !isInView || isSuccess ) return;
 
         getItem?.id && getReviews( {
             body: REVIEW_QUERY,
@@ -48,7 +35,7 @@ const Reviews: FC = () => {
             }
         }  )
 
-    }, [ getItem, itemDataLoading, isInView ] )
+    }, [ getItem, itemDataLoading, isInView, isSuccess ] )
 
     if( !isSuccess ) return (
         <div className={ styles.reviews_wrap }>
@@ -57,6 +44,7 @@ const Reviews: FC = () => {
             </div>
             <div 
                 className={ styles.review_loading }
+                ref={ reviewsRef }
                 id={ "reviews" }
             >
                 <Loader/> 
