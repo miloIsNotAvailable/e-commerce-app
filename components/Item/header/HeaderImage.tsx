@@ -1,6 +1,8 @@
 import { useItemContext } from "@contexts/ItemContext";
 import { RGB, useAvgBgColor } from "@hooks/useAvgBgColor";
+import { useRedux } from "@hooks/useRedux";
 import { FC, useEffect, useRef, useState } from "react";
+import { cartItemsState } from "../../../interfaces/reduxInterfaces";
 import { styles } from "../build/ItemStyles";
 
 const HeaderImage: FC = () => {
@@ -9,7 +11,7 @@ const HeaderImage: FC = () => {
     const imgRef = useRef<HTMLImageElement| null>( null )
     const getCol = useAvgBgColor()
     const [ color, setColor ] = useState<RGB>( { r: 255, g: 144, b: 173 } )
-    
+
     useEffect( () => {
         if( !imgRef.current || isLoading ) return
 

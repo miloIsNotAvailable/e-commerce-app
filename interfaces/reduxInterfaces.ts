@@ -22,6 +22,15 @@ export type openReviewInputType = {
     open: boolean
 }
 
+export type cartType = {
+    items: ({
+        img: string,
+        title: string
+        desc: string
+        id: string
+    })[]
+}
+
 export type userDataState = {
     userData: userDataType
 }
@@ -32,4 +41,8 @@ export type itemDataState = {
 
 export type reviewInputState = {
     reviewInput: openReviewInputType
+}
+
+export type cartItemsState = {
+    cartItems: cartType
 }
